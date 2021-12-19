@@ -14,10 +14,22 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(  
       child:Scaffold(
-        appBar: AppBar(),
-        backgroundColor: Colors.brown[900],
+        appBar: AppBar(
+          title:Text("Our Trips"),
+          backgroundColor: Colors.brown[700],
+        ),
+        backgroundColor: Colors.white,
         body:SingleChildScrollView(child:Wrap(children: List<Widget>.generate(5, (index) {return volsitem();}))),
       )
+      // body: Container(
+      //     decoration: BoxDecoration(
+      //     image: DecorationImage(
+      //       image: NetworkImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRngnXL9xDDjxMzGZO9CWXhKpioEu0nxpZJww&usqp=CAU"),
+      //       fit: BoxFit.cover,
+      //     ),
+      //   ),
+      //   child: null /* add child content here */,
+      //   ),
       
     );
   }
