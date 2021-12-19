@@ -15,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(  
       child:Scaffold(
         appBar: AppBar(),
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.brown[900],
         body:SingleChildScrollView(child:Wrap(children: List<Widget>.generate(5, (index) {return volsitem();}))),
       )
       

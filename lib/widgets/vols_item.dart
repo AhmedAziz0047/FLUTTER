@@ -18,9 +18,9 @@ class volsitem extends StatelessWidget {
             child: Column(
               children: [
                 ListTile(
-                  title: Text("heading"),
-                  subtitle: Text("subheading"),
-                  trailing: Icon(Icons.favorite_outline),
+                  title: const Text("heading"),
+                  subtitle: const Text("subheading"),
+                  trailing: const Icon(Icons.favorite_outline),
                 ),
                 Container(width: height*0.4,height:height*0.3,
                   child: ClipRRect(borderRadius: BorderRadius.circular(30),child: Image.network(
@@ -36,7 +36,7 @@ class volsitem extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.all(16.0),
                   alignment: Alignment.centerLeft,
-                  child: Text("aa"),
+                  child: const Text("aa"),
                 ),
                 ButtonBar(
                   children: [
