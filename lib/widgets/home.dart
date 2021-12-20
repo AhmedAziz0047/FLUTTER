@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterproject/admin/adminFlights.dart';
+import 'package:flutterproject/admin/bottomnavbar.dart';
 import 'package:flutterproject/widgets/vols_item.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,10 +18,10 @@ class _HomeScreenState extends State<HomeScreen> {
       child:Scaffold(
         appBar: AppBar(
           title:Text("Our Trips"),
-          backgroundColor: Colors.brown[700],
+          backgroundColor: Colors.blue[900],
         ),
         backgroundColor: Colors.white,
-        body:adminFlights()
+        body:bottomnavbar()
         // SingleChildScrollView(child:Wrap(children: List<Widget>.generate(5, (index) {return adminFlights();}))),
       )
       // body: Container(
