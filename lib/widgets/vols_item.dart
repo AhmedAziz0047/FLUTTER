@@ -23,8 +23,7 @@ class volsitem extends StatelessWidget {
                   trailing: Icon(Icons.favorite_outline),
                 ),
                 Container(width: height*0.4,height:height*0.3,
-                  child: ClipRRect(borderRadius: BorderRadius.circular(30),child: Image.network(
-        'https://source.unsplash.com/random/800x600?house'),),
+                  child: ClipRRect(borderRadius: BorderRadius.circular(30),child: Image.network('https://source.unsplash.com/random/800x600?house'),),
                 ),
                 // Container(
                 //   height: 200.0,
@@ -41,13 +40,9 @@ class volsitem extends StatelessWidget {
                 ButtonBar(
                   children: [
                     TextButton(
-                      child: const Text('CONTACT AGENT'),
+                      child: const Text("Take your place"),
                       onPressed: () {/* ... */},
                     ),
-                    TextButton(
-                      child: const Text('LEARN MORE'),
-                      onPressed: () {/* ... */},
-                    )
                   ],
                 )
               ],
