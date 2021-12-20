@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterproject/admin/adminFlights.dart';
 import 'package:flutterproject/widgets/vols_item.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,7 +20,8 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: Colors.brown[700],
         ),
         backgroundColor: Colors.white,
-        body:SingleChildScrollView(child:Wrap(children: List<Widget>.generate(5, (index) {return volsitem();}))),
+        body:adminFlights()
+        // SingleChildScrollView(child:Wrap(children: List<Widget>.generate(5, (index) {return adminFlights();}))),
       )
       // body: Container(
       //     decoration: BoxDecoration(

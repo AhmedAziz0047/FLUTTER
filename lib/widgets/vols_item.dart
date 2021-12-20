@@ -14,13 +14,12 @@ class volsitem extends StatelessWidget {
       margin:EdgeInsets.all(height*.025),
       child: TouchableOpacity(
         child: Card(
-          color: Colors.grey[300],
             elevation: 8.0,
             child: Column(
               children: [
                 ListTile(
                   title: Text("Italy"),
-                  subtitle: Text("Enjoy italy with their musems"),
+                  subtitle: Text("aller: 31/12/2021 - retour: ?????"),
                   trailing: Icon(Icons.favorite_outline),
                 ),
                 Container(width: height*0.4,height:height*0.3,
