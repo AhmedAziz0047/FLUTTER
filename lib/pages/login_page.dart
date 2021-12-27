@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterproject/common/theme_helper.dart';
 import 'package:flutterproject/pages/acceuilFlight.dart';
+import 'package:flutterproject/widgets/home.dart';
 
 import 'registration_page.dart';
 import 'widgets/header_widget.dart';
@@ -107,10 +108,10 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                   onPressed: () {
                                     //After successful login we will redirect to profile page. Let's create profile page now
-                                    Navigator.pushReplacement(
+                                    Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => acceuilFlight()));
+                                            builder: (context) => HomeScreen(data: 5,)));
                                   },
                                 ),
                               ),
@@ -146,3 +147,4 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+

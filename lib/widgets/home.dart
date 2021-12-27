@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterproject/admin/adminFlights.dart';
 import 'package:flutterproject/admin/bottomnavbar.dart';
+import 'package:flutterproject/pages/acceuilFlight.dart';
 import 'package:flutterproject/widgets/vols_item.dart';
 import 'package:flutterproject/pages/login_page.dart';
 
@@ -16,13 +17,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-            appBar: AppBar(
+        child: Scaffold(appBar: AppBar(
               title: Text("Our Trips"),
               backgroundColor: Colors.blue[900],
             ),
             backgroundColor: Colors.white,
-            body: LoginPage()
+            body: acceuilFlight()
             // SingleChildScrollView(child:Wrap(children: List<Widget>.generate(5, (index) {return adminFlights();}))),
             )
         // body: Container(

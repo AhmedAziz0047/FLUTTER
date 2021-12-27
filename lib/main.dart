@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutterproject/pages/login_page.dart';
+import 'package:flutterproject/pages/widgets/addFlight.dart';
 import 'package:flutterproject/widgets/home.dart';
 import 'widgets/vols_item.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -55,8 +57,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(
-        data: 5,
+      home: addFlight(
+      
       ),
     );
   }
