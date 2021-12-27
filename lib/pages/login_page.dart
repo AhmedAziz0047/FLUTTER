@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterproject/common/theme_helper.dart';
+import 'package:flutterproject/pages/acceuilFlight.dart';
 
 import 'registration_page.dart';
 import 'widgets/header_widget.dart';
@@ -109,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                                     Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => LoginPage()));
+                                            builder: (context) => acceuilFlight()));
                                   },
                                 ),
                               ),
