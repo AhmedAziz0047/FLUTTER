@@ -34,10 +34,6 @@ class _adminFlightsState extends State<adminFlights> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          backgroundColor: Colors.orange[100],
-          title: Text("Dashbord"),
-      ),
         body: FutureBuilder<List>(
           future: getflights(),
             builder: (context,snapshot){
@@ -58,55 +54,40 @@ class _adminFlightsState extends State<adminFlights> {
 
                 var data=snapshot.data;
                 return ListView.separated(
+                  separatorBuilder: (BuildContext context, int index) => const Divider(),
                     itemCount:snapshot.data!.length ,
                     itemBuilder: (context, index) {
-                      
-                      return Container(
-                        height: 100,
-                        padding: const EdgeInsets.symmetric(horizontal:16),
-                        child: 
-                        
-                        Row(
-                          children: [
-                            Expanded(flex: 1,child:Image.network("http://192.168.1.16:4200/" + data![index]['photo'])),
-                            Expanded(flex: 1,child:Text(data![index]['country'])),
-                            Expanded(flex: 2,child:Text(data![index]['date_aller'])),
-                          
-                            Expanded(flex: 2,child:Column(
-                              children: [
-                                FlatButton.icon(onPressed: ()async{
-                                      await deleteFlight(data![index]['_id']);
-                                      MyToast().showtoast("deleted succ");
+                      return Card(
+                        child: ListTile(
+                          title: Text(data![index]['country']),
+                          subtitle: Text(data![index]['date_aller']),
+                          leading: CircleAvatar(
+                            backgroundImage: NetworkImage(
+                              "http://192.168.1.16:4200/" + data[index]['photo']
+                            ),
+                          ),
+                          trailing: IconButton(onPressed: ()async{
+                                await deleteFlight(data![index]['_id']);
                                       setState(() {
-                                        
                                       });
-                                }, icon: Icon(Icons.delete), label: Text("")),
-                              ],
-                            )),
-                             Expanded(flex: 2,child:Column(
-                              children: [
-                                FlatButton.icon(onPressed: (){
-                                   MyToast().showtoast("resussi");
-                                }, icon: Icon(Icons.edit), label: Text("")),
-                              ],
-                            )),
-                          ],
+                          }, icon: Icon(Icons.delete)),
+                            
                         ),
+                      );
+                   
 
-                      );
-                    },
-                    separatorBuilder: (context,index){
-                      return Divider(
-                          thickness: 0.5,
-                          height: 0.5,
-                      );
+                      
                     },
                 );
             }
-        )
+        ),
           
         
-            
+             floatingActionButton: FloatingActionButton(
+              onPressed: (){},
+              backgroundColor: Colors.orange[900],
+              child: const Icon(Icons.add),
+            ),
           
     );
   }
