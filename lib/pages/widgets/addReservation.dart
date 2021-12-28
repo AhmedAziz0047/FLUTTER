@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutterproject/models/filghtsM.dart';
 import 'package:http/http.dart' as http;
-class addFlight extends StatefulWidget {
-  const addFlight({ Key? key }) : super(key: key);
+
+class addReservation extends StatefulWidget {
+  const addReservation({ Key? key }) : super(key: key);
 
   @override
-  _addFlightState createState() => _addFlightState();
+  _addReservationState createState() => _addReservationState();
 }
-
-class _addFlightState extends State<addFlight> {
- 
+  String countre="";
+  String passName="";
+  String  passLastNAme="";
+  String passEmail="";
 final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
-Future<filghtsModel?> addFlight(String country,String dateAller,String dateRetour,String prix,String photo ,String RemainingSeats)async{
+
+Future<filghtsModel?> addFlight(String country,String dateAller,String dateRetour,int prix,String photo ,int RemainingSeats)async{
       var url='http://localhost:3000/api/addFlight';
       final res= await http.post(Uri.parse(url),body: {
        "country":country,
@@ -29,18 +32,16 @@ Future<filghtsModel?> addFlight(String country,String dateAller,String dateRetou
         return null;
       }
 }
+
+class _addReservationState extends State<addReservation> {
   final TextEditingController countryCT=TextEditingController();
   final TextEditingController allerCT=TextEditingController();
   final TextEditingController retourCT=TextEditingController();
   final TextEditingController PrixCT=TextEditingController();
   final TextEditingController photoCT=TextEditingController();
   final TextEditingController seatsCT=TextEditingController();
-
-  
-  
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
         title: const Text('ADD A TRIP'),
@@ -67,72 +68,45 @@ Future<filghtsModel?> addFlight(String country,String dateAller,String dateRetou
               SizedBox(),
               TextFormField(
                 decoration: InputDecoration(
-                  labelText: "Departure Date"
+                  labelText: "Passenger Name"
                 ),
-                controller: allerCT,
+                controller:allerCT,
                 validator: (value){
                   if (value!.isEmpty){
-                    return "Enter Departure Date";
+                    return "Enter Passenger Name";
                   }
                 }
               ),
               SizedBox(),
               TextFormField(
                 decoration: InputDecoration(
-                  labelText: "arrival Date"
+                  labelText: "Passenger Last Name"
                 ),
-                controller: retourCT,
+                controller:retourCT,
                 validator: (value){
                   if (value!.isEmpty){
-                    return "Enter arrival Date";
+                    return "Enter Passenger Last Name";
                   }
                 }
               ),
               SizedBox(),
               TextFormField(
                 decoration: InputDecoration(
-                  labelText: "price"
+                  
+                  labelText: "Passenger email"
                 ),
-                controller: PrixCT,
+                
                 validator: (value){
                   if (value!.isEmpty){
-                    return "Enter the price";
+                    return "Passenger email";
                   }
                 }
               ),
+             
+             
               SizedBox(),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: "number of seats"
-                ),
-                controller: seatsCT,
-                validator: (value){
-                  if (value!.isEmpty){
-                    return "Enter the number of seats";
-                  }
-                }
-              ),
-              SizedBox(),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: "photo"
-                ),
-                controller: photoCT,
-                validator: (value){
-                  if (value!.isEmpty){
-                    return "enter a photo";
-                  }
-                }
-              ),
-              SizedBox(),
-              OutlineButton(onPressed:()async{
-                final String country=countryCT.text;
-                final String aller=allerCT.text;
-                final String retour=retourCT.text;
-                final String prix=PrixCT.text;
-                final String photo=photoCT.text;
-                final String seats=seatsCT.text;
-                final filghtsModel? flight=await addFlight(country, aller, retour, prix, photo, seats);
+              OutlineButton(onPressed:(){
+          
               },
               child:Text('ADD')
               ),

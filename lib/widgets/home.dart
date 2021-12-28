@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterproject/admin/adminFlights.dart';
 import 'package:flutterproject/admin/bottomnavbar.dart';
 import 'package:flutterproject/pages/acceuilFlight.dart';
+import 'package:flutterproject/pages/widgets/addFlight.dart';
 import 'package:flutterproject/widgets/vols_item.dart';
 import 'package:flutterproject/pages/login_page.dart';
 
@@ -22,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
               backgroundColor: Colors.blue[900],
             ),
             backgroundColor: Colors.white,
-            body: acceuilFlight()
+            body: acceuilFlight(),
             // SingleChildScrollView(child:Wrap(children: List<Widget>.generate(5, (index) {return adminFlights();}))),
             )
         // body: Container(

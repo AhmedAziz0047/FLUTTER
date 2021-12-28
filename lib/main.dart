@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterproject/pages/acceuilFlight.dart';
 import 'package:flutterproject/pages/login_page.dart';
 import 'package:flutterproject/pages/widgets/addFlight.dart';
 import 'package:flutterproject/widgets/home.dart';
@@ -57,9 +58,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: addFlight(
-      
-      ),
+      home: acceuilFlight(),
     );
   }
 }
