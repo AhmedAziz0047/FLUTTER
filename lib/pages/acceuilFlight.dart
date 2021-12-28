@@ -5,7 +5,7 @@ import 'package:touchable_opacity/touchable_opacity.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 class acceuilFlight extends StatelessWidget {
-   final String imgurl="https://www.celebritycruises.com/blog/content/uploads/2020/08/italy-in-the-summer-cinque-terre-hero-1600x890.jpg";
+  
 
 
       Future<List> getflights() async {
@@ -23,15 +23,15 @@ class acceuilFlight extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height=MediaQuery.of(context).size.height;
     return Scaffold(
           appBar: AppBar(
             title: Text("Our Trips"),
           ),
-          body: FutureBuilder<List>(
+          body: SingleChildScrollView(child: FutureBuilder<List>(
             future: getflights(),
             builder: (context,snapshot){
-              
-              
+                           
               if(snapshot.hasError){
                   return Center(child: 
                         Text(snapshot.error.toString()),
@@ -48,19 +48,57 @@ class acceuilFlight extends StatelessWidget {
                 }
 
                 var data=snapshot.data;
-                return ListView.builder(
-                    itemCount:snapshot.data!.length,
-                    itemBuilder:(context,snapshot){
-                      return Center(
-                        child: Text(data![1]['country']),
-                      );
-                    }
-                    );
-                  
-                 
+                return Wrap(
+                          children: List<Widget>.generate(data!.length, (index) {
+                                return TouchableOpacity(
+                                  child: Card(
+                                      elevation: 8.0,
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            child: ClipRRect(borderRadius: BorderRadius.only(bottomRight: Radius.circular(15),bottomLeft: Radius.circular(15)),child: 
+                                            Image.network("http://192.168.1.16:4200/" + data[index]['photo']),),
+                                          ),
+                                         
+                                          ListTile(
+                                            
+                                            title: Text(data[index]["country"]),
+                                            subtitle:Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                              Text(data[index]["date_aller"]),
+                                              SizedBox(width: 10),
+                                              Text(data[index]["date_retour"])
+                                            ],), 
+                                            trailing: Icon(Icons.favorite_outline),
+                                          ),
+                                          
+                                          // Container(
+                                          //   height: 200.0,
+                                          //   child: Ink.image(
+                                          //     image: cardImage,
+                                          //     fit: BoxFit.cover,
+                                          //   ),
+                                          // ),
+                                          ButtonBar(
+                                            children: [
+                                              TextButton(
+                                                child: const Text("Take your place"),
+                                                onPressed: () {/* ... */},
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      )),
+                                      onTap: (){
+                                        MyToast().showtoast("resussi");
+                                      },
+                                );
+                          }));
                 
             }
             ),
+          ),
             );
     
    
