@@ -9,6 +9,7 @@ import 'package:flutterproject/widgets/home.dart';
 
 // import 'profile_page.dart';
 
+
 class RegistrationPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
