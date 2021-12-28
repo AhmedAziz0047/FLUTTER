@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterproject/admin/adminFlights.dart';
-import 'package:flutterproject/admin/bottomnavbar.dart';
+import 'package:flutterproject/admin/appbar_bottomnavbar.dart';
 import 'package:flutterproject/common/theme_helper.dart';
 import 'package:flutterproject/pages/acceuilFlight.dart';
 import 'package:flutterproject/widgets/home.dart';
@@ -44,12 +43,12 @@ final password=TextEditingController();
                   child: Column(
                     children: [
                       Text(
-                        'Hello',
+                        'Star Travel',
                         style: TextStyle(
                             fontSize: 60, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        'Signin into your account',
+                        'Welcome back',
                         style: TextStyle(color: Colors.grey),
                       ),
                       SizedBox(height: 30.0),
@@ -115,16 +114,16 @@ final password=TextEditingController();
                                   ),
                                   onPressed: () {
                                     //After successful login we will redirect to profile page. Let's create profile page now
-                                    if (username.text=="admin"){
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => bottomnavbar()));}
+                                    if (username.text=="admin"){ Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                              builder: (context) => acceuilFlight()));
+                                   }
                                             else{
                                               Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => acceuilFlight()));
+                                            builder: (context) => appbar_bottomnavbar()));
                                             }
                                   },
                                 ),
