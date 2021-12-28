@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterproject/admin/adminFlights.dart';
+import 'package:flutterproject/admin/bottomnavbar.dart';
 import 'package:flutterproject/common/theme_helper.dart';
 import 'package:flutterproject/pages/acceuilFlight.dart';
 import 'package:flutterproject/widgets/home.dart';
@@ -9,6 +11,7 @@ import 'registration_page.dart';
 import 'widgets/header_widget.dart';
 
 class LoginPage extends StatefulWidget {
+  
   const LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -16,6 +19,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final username=TextEditingController();
+final password=TextEditingController();
   double _headerHeight = 250;
   Key _formKey = GlobalKey<FormState>();
 
@@ -54,6 +59,7 @@ class _LoginPageState extends State<LoginPage> {
                             children: [
                               Container(
                                 child: TextField(
+                                  controller: username,
                                   decoration: ThemeHelper().textInputDecoration(
                                       'User Name', 'Enter your user name'),
                                 ),
@@ -63,6 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                               SizedBox(height: 30.0),
                               Container(
                                 child: TextField(
+                                  controller: password,
                                   obscureText: true,
                                   decoration: ThemeHelper().textInputDecoration(
                                       'Password', 'Enter your password'),
@@ -108,10 +115,17 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                   onPressed: () {
                                     //After successful login we will redirect to profile page. Let's create profile page now
+                                    if (username.text=="admin"){
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => HomeScreen(data: 5,)));
+                                            builder: (context) => bottomnavbar()));}
+                                            else{
+                                              Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => acceuilFlight()));
+                                            }
                                   },
                                 ),
                               ),
