@@ -43,6 +43,7 @@ dependencies:
   otp_text_field: ^1.1.1
 
   http:
+  date_field:
 dev_dependencies:
   flutter_test:
     sdk: flutter

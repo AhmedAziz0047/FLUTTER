@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterproject/admin/adminFlights.dart';
 import 'package:flutterproject/admin/appbar_bottomnavbar.dart';
 import 'package:flutterproject/pages/acceuilFlight.dart';
-import 'package:flutterproject/pages/widgets/addFlight.dart';
+
 import 'package:flutterproject/widgets/vols_item.dart';
 import 'package:flutterproject/pages/login_page.dart';
 

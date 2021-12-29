@@ -5,8 +5,6 @@ import 'package:flutterproject/admin/add_user.dart';
 import 'package:flutterproject/admin/adminFlights.dart';
 import 'package:flutterproject/admin/adminReservations.dart';
 import 'package:flutterproject/admin/adminUsers.dart';
-import 'package:flutterproject/pages/widgets/addFlight.dart';
-import 'package:flutterproject/pages/widgets/addReservation.dart';
 class appbar_bottomnavbar extends StatefulWidget {
   const appbar_bottomnavbar({ Key? key }) : super(key: key);
 

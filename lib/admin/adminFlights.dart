@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutterproject/admin/adminReservations.dart';
 import 'package:flutterproject/admin/adminUsers.dart' ;
+import 'package:flutterproject/admin/update_flight.dart';
 import 'package:flutterproject/widgets/mytoast.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import 'package:touchable_opacity/touchable_opacity.dart';
 class adminFlights extends StatefulWidget {
   const adminFlights({ Key? key }) : super(key: key);
 
@@ -57,7 +60,7 @@ class _adminFlightsState extends State<adminFlights> {
                   separatorBuilder: (BuildContext context, int index) => const Divider(),
                     itemCount:snapshot.data!.length ,
                     itemBuilder: (context, index) {
-                      return Card(
+                      return TouchableOpacity(child:  Card(
                         child: ListTile(
                           title: Text(data![index]['country']),
                           subtitle: Text(data![index]['date_aller']),
@@ -73,6 +76,15 @@ class _adminFlightsState extends State<adminFlights> {
                           }, icon: Icon(Icons.delete)),
                             
                         ),
+                      ),
+                      onTap: (){
+                        Navigator.push(
+                                   context,
+                                   MaterialPageRoute(
+                                      builder: (context) => UpdateFlight(id: data![index]["_id"],)));
+
+        
+                      },
                       );
                    
 
