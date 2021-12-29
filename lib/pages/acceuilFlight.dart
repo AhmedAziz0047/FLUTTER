@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutterproject/pages/widgets/client_reservation.dart';
 import 'package:flutterproject/widgets/mytoast.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
 import 'package:http/http.dart' as http;
@@ -20,6 +21,7 @@ class acceuilFlight extends StatelessWidget {
        return Future.error("api not works");
      }
   }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +93,10 @@ class acceuilFlight extends StatelessWidget {
                                         ],
                                       )),
                                       onTap: (){
-                                        MyToast().showtoast("resussi");
+                                        Navigator.push(
+                                   context,
+                                   MaterialPageRoute(
+                                      builder: (context) => clientReservation(id:data![index]["country"],)));
                                       },
                                 );
                           }));

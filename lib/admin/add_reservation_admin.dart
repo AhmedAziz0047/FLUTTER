@@ -29,7 +29,10 @@ class _addReservationAdminState extends State<addReservationAdmin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+        appBar: AppBar(
+          backgroundColor: Colors.orange[500],
+          title: Text("Add new reservation"),
+      ),
         body: Container(padding: const EdgeInsets.only(left:40,right:40),
         child: Form(
           key: _formKey,

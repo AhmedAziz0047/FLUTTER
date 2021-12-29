@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterproject/admin/add_flight_admin.dart';
 import 'package:flutterproject/admin/adminReservations.dart';
 import 'package:flutterproject/admin/adminUsers.dart' ;
 import 'package:flutterproject/admin/update_flight.dart';
@@ -96,7 +97,12 @@ class _adminFlightsState extends State<adminFlights> {
           
         
              floatingActionButton: FloatingActionButton(
-              onPressed: (){},
+              onPressed: (){
+                   Navigator.push(
+                                   context,
+                                   MaterialPageRoute(
+                                      builder: (context) => addFlightADmin()));
+              },
               backgroundColor: Colors.orange[900],
               child: const Icon(Icons.add),
             ),

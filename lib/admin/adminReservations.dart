@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutterproject/admin/add_reservation_admin.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 class adminReservations extends StatefulWidget {
@@ -77,7 +77,12 @@ class _adminReservationsState extends State<adminReservations> {
             }
         ),
          floatingActionButton: FloatingActionButton(
-              onPressed: (){},
+              onPressed: (){
+                Navigator.push(
+                                   context,
+                                   MaterialPageRoute(
+                                      builder: (context) => addReservationAdmin()));
+              },
               backgroundColor: Colors.orange[400],
               child: const Icon(Icons.add),
             ),

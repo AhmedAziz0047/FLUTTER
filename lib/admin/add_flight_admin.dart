@@ -38,7 +38,10 @@ Future addFlight(String country,String dateAller,String dateRetour,String prix,S
   @override
   Widget build(BuildContext context) {
       return Scaffold(
-      
+        appBar: AppBar(
+          backgroundColor: Colors.orange[300],
+          title: Text("Add flight"),
+      ),
         body: Container(padding: const EdgeInsets.only(left:40,right:40),
         child: Form(
           key: _formKey,

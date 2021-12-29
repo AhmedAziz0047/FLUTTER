@@ -13,14 +13,11 @@ class appbar_bottomnavbar extends StatefulWidget {
 }
 
 class _bottomnavbarState extends State<appbar_bottomnavbar> {
-  List<String>pagesKeys=["flights","reservations","users"];
+  List<String>pagesKeys=["flights","reservations","users","addFligh","addReserv","addUser"];
   int currentIndex=0;
   final screens=[adminFlights(),
-                 addReservationAdmin(),
-                 adminUsers(),
-                 addFlightADmin(),
-                 addReservationAdmin(),
-                 addUser()                
+                 adminReservations(),
+                 adminUsers(),             
                  ];
   @override
   Widget build(BuildContext context) {
@@ -41,34 +38,18 @@ class _bottomnavbarState extends State<appbar_bottomnavbar> {
                 label:'Flights',
                 backgroundColor: Colors.green
               ), 
-               BottomNavigationBarItem(
-                icon: Icon(Icons.add),
-                label:'Reservations',
-                backgroundColor: Colors.green
-              ), 
                 BottomNavigationBarItem(
                 icon: Icon(IconData(0xe06d, fontFamily: 'MaterialIcons')),
-                label:'Users',
+                label:'Reservations',
                 backgroundColor: Colors.blue
 
               ),
                BottomNavigationBarItem(
                 icon: Icon(IconData(0xe743, fontFamily: 'MaterialIcons')),
-                label:'Add a flight',
-                backgroundColor: Colors.orange
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(IconData(0xe743, fontFamily: 'MaterialIcons')),
-                label:'Add a Reservation',
-                backgroundColor: Colors.orange
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(IconData(0xe743, fontFamily: 'MaterialIcons')),
-                label:'Add User',
-                backgroundColor: Colors.orange
-              )
-              
-            ],
+                label:'Users',
+                backgroundColor: Colors.green
+              ), 
+              ],
             selectedItemColor: Colors.white,
             selectedFontSize: 15,
             
