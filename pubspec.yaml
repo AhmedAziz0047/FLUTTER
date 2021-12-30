@@ -50,6 +50,7 @@ dependencies:
   http:
   date_field:
   flutter_local_notifications: ^8.2.0
+  awesome_notifications: ^0.6.19
 dev_dependencies:
   flutter_test:
     sdk: flutter
