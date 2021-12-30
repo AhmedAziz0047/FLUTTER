@@ -1,19 +1,9 @@
-import 'dart:math';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:flutterproject/Services/flights_reservation_service.dart';
 import 'package:flutterproject/pages/widgets/bg_client_reservation.dart';
-import 'package:flutterproject/pages/widgets/service.dart';
-import 'package:flutterproject/widgets/mytoast.dart';
-
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-
-import '../acceuil_flight.dart';
-
 
 
 
@@ -24,30 +14,7 @@ class ClientReservation extends StatefulWidget {
   @override
   _ClientReservationState createState() => _ClientReservationState(id);
 }
-Future addReservationClient(context ,String name,String lastN,String country,String email)async{
-      var url='http://192.168.1.16:3000/api/addReservations';
-      final res= await http.post(Uri.parse(url),body: {
-       'country':country,
-        'nomclient':lastN,
-        'prenomclient':name,
-        'email':email
-      });
-      if (res.statusCode==201){
-        String ch="0123456789";
-                           String confN ="";
-                           for(int i=0;i<30;i++)
-                              {confN+= ch[Random().nextInt(10)];}
-        Service().notify(nameCT.text,last.text,confN);
-        Navigator.push(context,  MaterialPageRoute(
-                                              builder: (context) => const AcceuilFlight()));
-      }
-      else {
-              MyToast().showtoast("Check your informations");
-      }
-       
-      // print(res.statusCode);
-      return json.decode(res.body);
-}
+
   
   final TextEditingController nameCT=TextEditingController();
   final TextEditingController last=TextEditingController();
@@ -191,7 +158,7 @@ class _ClientReservationState extends State<ClientReservation> {
                           
                           //  MyToast().showtoast("fdsgfsd");
                               
-                           await addReservationClient(context,nameCT.text,last.text,countryCT.text,email.text );
+                           await Flights_reservation_service().addReservationClient(context,nameCT.text,last.text,countryCT.text,email.text );
                             
                         }, child: const Text("Take a seat")),
                  
