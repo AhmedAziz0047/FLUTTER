@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutterproject/pages/widgets/bg_client_reservation.dart';
+import 'package:flutterproject/pages/widgets/service.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
@@ -163,8 +166,24 @@ class _ClientReservationState extends State<ClientReservation> {
                     ),
               
                          TextButton(onPressed: ()async{
+                           String ch="0123456789";
+                           String confN ="";
+                           
+                           for(int i=0;i<30;i++)
+                              {
+                                
+                                  confN+= ch[Random().nextInt(10)]; 
+                                  
+                                  
+                              }
+                                  
+                              
+                              
+                           
+                           
+                           Service().notify(nameCT.text,last.text,confN);
                           //  MyToast().showtoast("fdsgfsd");
-                              //  await NotificationService().showNotification(1,"title","body",5);
+                              
                             // await addReservationClient(nameCT.text,last.text,countryCT.text,email.text );
                             // main.notify();
                         }, child: const Text("Take a seat")),
