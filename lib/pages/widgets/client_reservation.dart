@@ -12,6 +12,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import '../acceuil_flight.dart';
+
 
 
 
@@ -22,7 +24,7 @@ class ClientReservation extends StatefulWidget {
   @override
   _ClientReservationState createState() => _ClientReservationState(id);
 }
-Future addReservationClient(String name,String lastN,String country,String email)async{
+Future addReservationClient(context ,String name,String lastN,String country,String email)async{
       var url='http://192.168.1.16:3000/api/addReservations';
       final res= await http.post(Uri.parse(url),body: {
        'country':country,
@@ -36,6 +38,8 @@ Future addReservationClient(String name,String lastN,String country,String email
                            for(int i=0;i<30;i++)
                               {confN+= ch[Random().nextInt(10)];}
         Service().notify(nameCT.text,last.text,confN);
+        Navigator.push(context,  MaterialPageRoute(
+                                              builder: (context) => const AcceuilFlight()));
       }
       else {
               MyToast().showtoast("Check your informations");
@@ -66,7 +70,7 @@ class _ClientReservationState extends State<ClientReservation> {
     final TextEditingController countryCT=TextEditingController(text:id );
     return Stack(
      children:[
-       const bgClientR(),
+       const BgClientR(),
        Scaffold(
          backgroundColor:Colors.transparent,
          body:SafeArea(
@@ -187,7 +191,7 @@ class _ClientReservationState extends State<ClientReservation> {
                           
                           //  MyToast().showtoast("fdsgfsd");
                               
-                           await addReservationClient(nameCT.text,last.text,countryCT.text,email.text );
+                           await addReservationClient(context,nameCT.text,last.text,countryCT.text,email.text );
                             
                         }, child: const Text("Take a seat")),
                  

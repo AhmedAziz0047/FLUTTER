@@ -29,6 +29,7 @@ class AcceuilFlight extends StatelessWidget {
     return Scaffold(
           appBar: AppBar(
             title: const Text("Our Trips"),
+            backgroundColor: Colors.orange[700],
           ),
           body: SingleChildScrollView(child: FutureBuilder<List>(
             future: getflights(),
