@@ -28,7 +28,14 @@ Future addReservationClient(String name,String lastN,String country,String email
         'nomclient':lastN,
         'prenomclient':name,
         'email':email
-      });
+      });if (res.statusCode==201){
+        String ch="0123456789";
+                           String confN ="";
+                           for(int i=0;i<30;i++)
+                              {confN+= ch[Random().nextInt(10)];}
+        Service().notify(nameCT.text,last.text,confN);
+      }
+       
       // print(res.statusCode);
       return json.decode(res.body);
 }
@@ -166,26 +173,17 @@ class _ClientReservationState extends State<ClientReservation> {
                     ),
               
                          TextButton(onPressed: ()async{
-                           String ch="0123456789";
-                           String confN ="";
                            
-                           for(int i=0;i<30;i++)
-                              {
-                                
-                                  confN+= ch[Random().nextInt(10)]; 
-                                  
-                                  
-                              }
                                   
                               
                               
                            
                            
-                           Service().notify(nameCT.text,last.text,confN);
+                          
                           //  MyToast().showtoast("fdsgfsd");
                               
-                            // await addReservationClient(nameCT.text,last.text,countryCT.text,email.text );
-                            // main.notify();
+                           await addReservationClient(nameCT.text,last.text,countryCT.text,email.text );
+                            
                         }, child: const Text("Take a seat")),
                  
                     
