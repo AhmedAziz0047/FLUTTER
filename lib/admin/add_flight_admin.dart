@@ -23,8 +23,9 @@ final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
       return Scaffold(
+        backgroundColor: Colors.brown[200],
         appBar: AppBar(
-          backgroundColor: Colors.orange[300],
+          backgroundColor: Colors.brown[400],
           title: const Text("Add flight"),
       ),
         body: Container(padding: const EdgeInsets.only(left:40,right:40),
@@ -97,6 +98,7 @@ final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
 
               TextFormField(
                 decoration: const InputDecoration(
+                  
                   labelText: "photo"
                 ),
                 controller: seatsCT,
@@ -107,7 +109,7 @@ final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
                 }
               ),
               const SizedBox(),
-              TextButton(child: const Text("choose date"),
+              TextButton(child: const Text("choose date",style: TextStyle(color: Colors.black),),
                    onPressed: () async {
                                 final pickedDate = await showDateRangePicker(
                                   context: context,
@@ -137,7 +139,7 @@ final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
                 
                 MyToast().showtoast(status.statusCode == 201 ? "added successfuly" : "verif your data");
               },
-              child:const Text('ADD'),
+              child:const Text('ADD',style: TextStyle(color: Colors.black)),
               ),
               
             ],
