@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:flutterproject/Services/flights_reservation_service.dart';
 
 class UpdateReserv extends StatelessWidget {
   UpdateReserv({ Key? key,required this.id}) : super(key: key);
@@ -11,34 +10,17 @@ class UpdateReserv extends StatelessWidget {
   final TextEditingController last=TextEditingController();
   final TextEditingController email=TextEditingController();
 
-  Future<Map> getOneReserv(String id)async{
-  final deleteurl=(Uri.parse('http://192.168.1.16:3000/api/getReservbyid/$id'));
-  final response =await http.get(deleteurl);
-  // print(response.statusCode);
-  // print(response.body);
-  return json.decode(response.body);
-  }
-Future updateReserv(String country,String nameP,String lastP,String emailP)async{
-  final url=Uri.parse('http://192.168.1.16:3000/api/editReservations/$id');
-  final res=await http.put(url,
-  body: {'country':country,
-        'nomclient':nameP,
-        'prenomclient':lastP,
-        'email':emailP
-      });
-      // print (res.statusCode);
-      return json.decode(res.body);
+  
 
-}
 
   @override
   Widget build(BuildContext context) {
       return Scaffold(
-      appBar: AppBar(title: const Text("Update flight"),),
+      appBar: AppBar(title: const Text("Update reservation"),),
       body: Container(padding: const EdgeInsets.only(left:40,right:40),
       child:
       FutureBuilder<Map>(
-        future: getOneReserv(id),
+        future: Flights_reservation_service().getOneReserv(id),
         builder: (context,snapshot){
                  if(snapshot.hasError){
                   return Center(child: 
@@ -123,8 +105,8 @@ Future updateReserv(String country,String nameP,String lastP,String emailP)async
               const SizedBox(),
               TextButton(onPressed:()async{
                 
-                 await updateReserv(countryCT.text, name.text, lname.text, 
-                                                      email.text);
+                 await Flights_reservation_service().updateReservadmin(context,countryCT.text, name.text, lname.text, 
+                                                      email.text,id);
                   
                 
                 // MyToast().showtoast(status.statusCode == 201 ? "added successfuly" : "verif your data");

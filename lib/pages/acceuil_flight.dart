@@ -1,27 +1,14 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutterproject/Services/flights_reservation_service.dart';
 import 'package:flutterproject/pages/widgets/client_reservation.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 class AcceuilFlight extends StatelessWidget {
   const AcceuilFlight({Key? key}) : super(key: key);
 
   
 
 
-      Future<List> getflights() async {
-     try{
-       print("api works");
-        var res =await http.get(Uri.parse('http://192.168.1.16:3000/api/getFlights'));
-        var decodedData=jsonDecode(res.body);
-        // print(decodedData);
-        // print("eearz");
-        return decodedData;
-     }catch(SocketException){
-       return Future.error("api not works");
-     }
-  }
+  
   
 
   @override
@@ -32,7 +19,7 @@ class AcceuilFlight extends StatelessWidget {
             backgroundColor: Colors.orange[700],
           ),
           body: SingleChildScrollView(child: FutureBuilder<List>(
-            future: getflights(),
+            future: Flights_reservation_service().getflights(),
             builder: (context,snapshot){
                            
               if(snapshot.hasError){
@@ -108,56 +95,7 @@ class AcceuilFlight extends StatelessWidget {
             );
     
    
-    // double height=MediaQuery.of(context).size.height;
-    // var cardImage = const NetworkImage(
-    //     'https://source.unsplash.com/random/800x600?house');
-    //     return Scaffold(
-    //      body: Center(
-    //        child: Text('zaea')
-    //      ),
-    //     );
-    // return Container(
-    //   margin:EdgeInsets.all(height*.025),
-    //   child: TouchableOpacity(
-    //     child: Card(
-    //         elevation: 8.0,
-    //         child: Column(
-    //           children: [
-    //             ListTile(
-    //               title: Text("Italy"),
-    //               subtitle: Text("aller: 31/12/2021 - retour: ?????"),
-    //               trailing: Icon(Icons.favorite_outline),
-    //             ),
-    //             Container(width: height*0.4,height:height*0.3,
-    //               child: ClipRRect(borderRadius: BorderRadius.circular(30),child: Image.network('https://source.unsplash.com/random/800x600?house'),),
-    //             ),
-    //             // Container(
-    //             //   height: 200.0,
-    //             //   child: Ink.image(
-    //             //     image: cardImage,
-    //             //     fit: BoxFit.cover,
-    //             //   ),
-    //             // ),
-    //             Container(
-    //               padding: EdgeInsets.all(16.0),
-    //               alignment: Alignment.centerLeft,
-    //               child: const Text("aa"),
-    //             ),
-    //             ButtonBar(
-    //               children: [
-    //                 TextButton(
-    //                   child: const Text("Take your place"),
-    //                   onPressed: () {/* ... */},
-    //                 ),
-    //               ],
-    //             )
-    //           ],
-    //         )),
-    //         onTap: (){
-    //           MyToast().showtoast("resussi");
-    //         },
-    //   ),
-    // );
+    
   }
 }
 

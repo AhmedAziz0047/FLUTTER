@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutterproject/Services/flights_reservation_service.dart';
 import 'package:flutterproject/widgets/mytoast.dart';
 import 'package:http/http.dart' as http ;
-import 'dart:convert';
+
 
 
 class AddFlightAdmin extends StatelessWidget {
@@ -12,25 +13,12 @@ final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
   final TextEditingController countryCT=TextEditingController();
   final TextEditingController allerCT=TextEditingController();
   final TextEditingController retourCT=TextEditingController();
-  final TextEditingController PrixCT=TextEditingController();
+  final TextEditingController prixCT=TextEditingController();
   final TextEditingController photoCT=TextEditingController();
   final TextEditingController seatsCT=TextEditingController();
   late http.Response status;
 
-Future addFlight(String country,String dateAller,String dateRetour,String prix,String photo ,String RemainingSeats)async{
-      var url='http://192.168.1.16:3000/api/addFlight';
-      final res= await http.post(Uri.parse(url),body: {
-       'country':country,
-        'date_aller':dateAller,
-        'date_retour':dateRetour,
-        'prix':prix,
-        'photo':photo,
-        'Remaining_Seats':RemainingSeats
-      });
-      print(res.statusCode);
-      
-      return json.decode(res.body);
-}
+
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +74,7 @@ Future addFlight(String country,String dateAller,String dateRetour,String prix,S
                 decoration: const InputDecoration(
                   labelText: "price"
                 ),
-                controller: PrixCT,
+                controller: prixCT,
                 validator: (value){
                   if (value!.isEmpty){
                     return "Enter the price";
@@ -142,8 +130,8 @@ Future addFlight(String country,String dateAller,String dateRetour,String prix,S
               const SizedBox(),
               TextButton(onPressed:()async{
                 
-                 await addFlight(countryCT.text, allerCT.text, retourCT.text, 
-                                                     PrixCT.text, photoCT.text, 
+                 await Flights_reservation_service().addFlight(context,countryCT.text, allerCT.text, retourCT.text, 
+                                                     prixCT.text, photoCT.text, 
                                                      seatsCT.text);
                   
                 

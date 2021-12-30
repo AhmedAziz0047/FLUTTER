@@ -1,31 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:flutterproject/Services/flights_reservation_service.dart';
 
 class UpdateFlight extends StatelessWidget {
  UpdateFlight({ Key? key,required this.id }) : super(key: key);
   final String id;
-  Future<Map> getOneFlight(String id)async{
-  final deleteurl=(Uri.parse('http://192.168.1.16:3000/api/getFlightbyid/$id'));
-  final response =await http.get(deleteurl);
-  // print(response.statusCode);
-  // print(response.body);
-  return json.decode(response.body);
-}
-Future updateFlight(String country,String dateAller,String dateRetour,String prix,String photo ,String remainingSeats)async{
-  final url=Uri.parse('http://192.168.1.16:3000/api/editFlight/$id');
-  final res=await http.put(url,
-  body: {'country':country,
-        'date_aller':dateAller,
-        'date_retour':dateRetour,
-        'prix':prix,
-        'photo':photo,
-        'Remaining_Seats':remainingSeats
-      });
-      // print (res.statusCode);
-      return json.decode(res.body);
 
-}
 
 
 final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
@@ -39,7 +18,7 @@ final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
       body: Container(padding: const EdgeInsets.only(left:40,right:40),
       child:
       FutureBuilder<Map>(
-        future: getOneFlight(id),
+        future: Flights_reservation_service().getOneFlight(id),
         builder: (context,snapshot){
                  if(snapshot.hasError){
                   return Center(child: 
@@ -163,8 +142,8 @@ final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
               const SizedBox(),
               TextButton(onPressed:()async{
                 
-                 await updateFlight(countryCT.text, allerCT.text, retourCT.text, 
-                                                     prixCT.text, photoCT.text, seatsCT.text);
+                 await Flights_reservation_service().updateFlight(countryCT.text, allerCT.text, retourCT.text, 
+                                                     prixCT.text, photoCT.text, seatsCT.text,id);
                   
                 
                 // MyToast().showtoast(status.statusCode == 201 ? "added successfuly" : "verif your data");

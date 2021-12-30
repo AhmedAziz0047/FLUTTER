@@ -20,13 +20,14 @@ class _AppbarBottomnavbarState extends State<AppbarBottomnavbar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.brown[400],
       appBar: AppBar(
-          backgroundColor: Colors.orange[900],
+          backgroundColor: Colors.brown[400],
           title:const Text("Dashboard"),
       ),
       body:screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.orange[900],
+              backgroundColor: Colors.brown[400],
               currentIndex:currentIndex,
               onTap: (index)=>setState(()=>currentIndex=index ),
               items: const[
