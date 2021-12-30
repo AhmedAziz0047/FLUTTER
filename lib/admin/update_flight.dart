@@ -4,15 +4,15 @@ import 'dart:convert';
 
 class UpdateFlight extends StatelessWidget {
  UpdateFlight({ Key? key,required this.id }) : super(key: key);
-  String id;
+  final String id;
   Future<Map> getOneFlight(String id)async{
   final deleteurl=(Uri.parse('http://192.168.1.16:3000/api/getFlightbyid/$id'));
   final response =await http.get(deleteurl);
-  print(response.statusCode);
-  print(response.body);
+  // print(response.statusCode);
+  // print(response.body);
   return json.decode(response.body);
 }
-Future updateFlight(String country,String dateAller,String dateRetour,String prix,String photo ,String RemainingSeats)async{
+Future updateFlight(String country,String dateAller,String dateRetour,String prix,String photo ,String remainingSeats)async{
   final url=Uri.parse('http://192.168.1.16:3000/api/editFlight/$id');
   final res=await http.put(url,
   body: {'country':country,
@@ -20,9 +20,9 @@ Future updateFlight(String country,String dateAller,String dateRetour,String pri
         'date_retour':dateRetour,
         'prix':prix,
         'photo':photo,
-        'Remaining_Seats':RemainingSeats
+        'Remaining_Seats':remainingSeats
       });
-      print (res.statusCode);
+      // print (res.statusCode);
       return json.decode(res.body);
 
 }
@@ -35,7 +35,7 @@ final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Update flight"),),
+      appBar: AppBar(title: const Text("Update flight"),),
       body: Container(padding: const EdgeInsets.only(left:40,right:40),
       child:
       FutureBuilder<Map>(
@@ -48,20 +48,20 @@ final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
                 }
                  
                 if(snapshot.connectionState==ConnectionState.waiting){
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                     );
                 }
                if (!snapshot.hasData){
-                  return Text("no data");
+                  return const Text("no data");
                 }
                 var data=snapshot.data;
                 final TextEditingController countryCT=TextEditingController(text: data!['country']);
-                final TextEditingController allerCT=TextEditingController(text: data!['date_aller'] );
-                final TextEditingController retourCT=TextEditingController(text: data!['date_retour']);
-                final TextEditingController PrixCT=TextEditingController(text: data!['prix']);
-                final TextEditingController photoCT=TextEditingController(text: data!['photo']);
-                final TextEditingController seatsCT=TextEditingController(text: data!['Remaining_Seats']);
+                final TextEditingController allerCT=TextEditingController(text: data['date_aller'] );
+                final TextEditingController retourCT=TextEditingController(text: data['date_retour']);
+                final TextEditingController prixCT=TextEditingController(text: data['prix']);
+                final TextEditingController photoCT=TextEditingController(text: data['photo']);
+                final TextEditingController seatsCT=TextEditingController(text: data['Remaining_Seats']);
                 
                 
          return Form(
@@ -70,9 +70,9 @@ final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
             
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(width: 20,),
+              const SizedBox(width: 20,),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Country',
                 ),
                 controller: countryCT,
@@ -82,9 +82,9 @@ final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
                   }
                 }
               ),
-              SizedBox(),
+              const SizedBox(),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText:  'Departure date',
                 ),
                 controller: allerCT,
@@ -94,10 +94,10 @@ final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
                   }
                 }
               ),
-              SizedBox(),
+              const SizedBox(),
               TextFormField(
                 
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Arrival date'
                 ),
                 controller: retourCT,
@@ -107,21 +107,21 @@ final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
                   }
                 }
               ),
-              SizedBox(),
+              const SizedBox(),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Price'
                 ),
-                controller: PrixCT,
+                controller: prixCT,
                 validator: (value){
                   if (value!.isEmpty){
                     return "Enter the price";
                   }
                 }
               ),
-              SizedBox(),
+              const SizedBox(),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Photo'
                 ),
                 controller: photoCT,
@@ -131,10 +131,10 @@ final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
                   }
                 }
               ),
-              SizedBox(),
+              const SizedBox(),
               
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Number of seats'
                 ),
                 controller: seatsCT,
@@ -144,32 +144,32 @@ final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
                   }
                 }
               ),
-              SizedBox(),
-              TextButton(child: Text("choose date"),
+              const SizedBox(),
+              TextButton(child:const  Text("choose date"),
                    onPressed: () async {
                                 final pickedDate = await showDateRangePicker(
                                   context: context,
                                   lastDate:
-                                      DateTime.now().add(Duration(days: 365)),
-                                  firstDate: new DateTime.now(),
+                                      DateTime.now().add(const Duration(days: 365)),
+                                      firstDate: DateTime.now(),
                                 );
                               
                                 // CreateEventFinalValues.pickedTime = pickedDate;
-                                allerCT.text=pickedDate!.start.toString().substring(0,pickedDate!.start.toString().indexOf(" "));
-                                retourCT.text=pickedDate!.end.toString().substring(0,pickedDate!.end.toString().indexOf(" "));
+                                allerCT.text=pickedDate!.start.toString().substring(0,pickedDate.start.toString().indexOf(" "));
+                                retourCT.text=pickedDate.end.toString().substring(0,pickedDate.end.toString().indexOf(" "));
                                 
                               },
               ),
-              SizedBox(),
+              const SizedBox(),
               TextButton(onPressed:()async{
                 
                  await updateFlight(countryCT.text, allerCT.text, retourCT.text, 
-                                                     PrixCT.text, photoCT.text, seatsCT.text);
+                                                     prixCT.text, photoCT.text, seatsCT.text);
                   
                 
                 // MyToast().showtoast(status.statusCode == 201 ? "added successfuly" : "verif your data");
               },
-              child:Text('Update'),
+              child:const Text('Update'),
               ),
             ],
           ),

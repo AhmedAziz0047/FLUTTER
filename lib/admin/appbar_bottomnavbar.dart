@@ -1,37 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:flutterproject/admin/add_flight_admin.dart';
-import 'package:flutterproject/admin/add_reservation_admin.dart';
-import 'package:flutterproject/admin/add_user.dart';
-import 'package:flutterproject/admin/adminFlights.dart';
-import 'package:flutterproject/admin/adminReservations.dart';
-import 'package:flutterproject/admin/adminUsers.dart';
-class appbar_bottomnavbar extends StatefulWidget {
-  const appbar_bottomnavbar({ Key? key }) : super(key: key);
+import 'package:flutterproject/admin/admin_users.dart';
+
+import 'admin_flights.dart';
+import 'admin_reservations.dart';
+class AppbarBottomnavbar extends StatefulWidget {
+  const AppbarBottomnavbar({ Key? key }) : super(key: key);
 
   @override
-  _bottomnavbarState createState() => _bottomnavbarState();
+  _AppbarBottomnavbarState createState() => _AppbarBottomnavbarState();
 }
 
-class _bottomnavbarState extends State<appbar_bottomnavbar> {
-  List<String>pagesKeys=["flights","reservations","users","addFligh","addReserv","addUser"];
+class _AppbarBottomnavbarState extends State<AppbarBottomnavbar> {
+  List<String>pagesKeys=["flights","reservations","users"];
   int currentIndex=0;
-  final screens=[adminFlights(),
-                 adminReservations(),
-                 adminUsers(),             
+  final screens=[const AdminFlights(),
+                 const AdminReservations(),
+                 const AdminUsers(),             
                  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.orange[900],
-          title: Text("Dashboard"),
+          title:const Text("Dashboard"),
       ),
       body:screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.orange[900],
               currentIndex:currentIndex,
               onTap: (index)=>setState(()=>currentIndex=index ),
-              items: [
+              items: const[
              
                 BottomNavigationBarItem(
                 icon: Icon(IconData(0xee5f, fontFamily: 'MaterialIcons')),

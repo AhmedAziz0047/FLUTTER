@@ -4,7 +4,7 @@ import 'dart:convert';
 
 class UpdateReserv extends StatelessWidget {
   UpdateReserv({ Key? key,required this.id}) : super(key: key);
-  String id;
+  final String id;
    final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
    final TextEditingController country=TextEditingController();
   final TextEditingController nameCT=TextEditingController();
@@ -14,8 +14,8 @@ class UpdateReserv extends StatelessWidget {
   Future<Map> getOneReserv(String id)async{
   final deleteurl=(Uri.parse('http://192.168.1.16:3000/api/getReservbyid/$id'));
   final response =await http.get(deleteurl);
-  print(response.statusCode);
-  print(response.body);
+  // print(response.statusCode);
+  // print(response.body);
   return json.decode(response.body);
   }
 Future updateReserv(String country,String nameP,String lastP,String emailP)async{
@@ -26,7 +26,7 @@ Future updateReserv(String country,String nameP,String lastP,String emailP)async
         'prenomclient':lastP,
         'email':emailP
       });
-      print (res.statusCode);
+      // print (res.statusCode);
       return json.decode(res.body);
 
 }
@@ -34,7 +34,7 @@ Future updateReserv(String country,String nameP,String lastP,String emailP)async
   @override
   Widget build(BuildContext context) {
       return Scaffold(
-      appBar: AppBar(title: Text("Update flight"),),
+      appBar: AppBar(title: const Text("Update flight"),),
       body: Container(padding: const EdgeInsets.only(left:40,right:40),
       child:
       FutureBuilder<Map>(
@@ -47,18 +47,18 @@ Future updateReserv(String country,String nameP,String lastP,String emailP)async
                 }
                  
                 if(snapshot.connectionState==ConnectionState.waiting){
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                     );
                 }
                if (!snapshot.hasData){
-                  return Text("no data");
+                  return const Text("no data");
                 }
                 var data=snapshot.data;
                 final TextEditingController countryCT=TextEditingController(text: data!['country']);
-                final TextEditingController name=TextEditingController(text: data!['prenomclient'] );
-                final TextEditingController Lname=TextEditingController(text: data!['nomclient']);
-                final TextEditingController email=TextEditingController(text: data!['email']);
+                final TextEditingController name=TextEditingController(text: data['prenomclient'] );
+                final TextEditingController lname=TextEditingController(text: data['nomclient']);
+                final TextEditingController email=TextEditingController(text: data['email']);
 
                 
                 
@@ -68,9 +68,9 @@ Future updateReserv(String country,String nameP,String lastP,String emailP)async
             
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(width: 20,),
+              const SizedBox(width: 20,),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Passenger name',
                 ),
                 controller: name,
@@ -80,22 +80,22 @@ Future updateReserv(String country,String nameP,String lastP,String emailP)async
                   }
                 }
               ),
-              SizedBox(),
+              const SizedBox(),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText:  'Passenger Last Name',
                 ),
-                controller: Lname,
+                controller: lname,
                 validator: (value){
                   if (value!.isEmpty){
                     return "Enter last name";
                   }
                 }
               ),
-              SizedBox(),
+              const SizedBox(),
               TextFormField(
                 
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Destination'
                 ),
                 controller: countryCT,
@@ -105,9 +105,9 @@ Future updateReserv(String country,String nameP,String lastP,String emailP)async
                   }
                 }
               ),
-              SizedBox(),
+              const SizedBox(),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Email'
                 ),
                 controller: email,
@@ -120,16 +120,16 @@ Future updateReserv(String country,String nameP,String lastP,String emailP)async
            
            
           
-              SizedBox(),
+              const SizedBox(),
               TextButton(onPressed:()async{
                 
-                 await updateReserv(countryCT.text, name.text, Lname.text, 
+                 await updateReserv(countryCT.text, name.text, lname.text, 
                                                       email.text);
                   
                 
                 // MyToast().showtoast(status.statusCode == 201 ? "added successfuly" : "verif your data");
               },
-              child:Text('Update'),
+              child:const Text('Update'),
               ),
             ],
           ),

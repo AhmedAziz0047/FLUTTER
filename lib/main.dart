@@ -1,8 +1,7 @@
+// import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterproject/pages/login_page.dart';
-import 'package:flutterproject/pages/widgets/notification_service.dart';
 
-import 'package:timezone/data/latest.dart' as tz;
 
 // void main() {
 //   runApp(LoginUiApp());
@@ -42,9 +41,19 @@ import 'package:timezone/data/latest.dart' as tz;
 
 void main() {
   
-  WidgetsFlutterBinding.ensureInitialized();
-  NotificationService().initNotification();
-  tz.initializeTimeZones();
+  // WidgetsFlutterBinding.ensureInitialized();
+  // AwesomeNotifications().initialize(null,[NotificationChannel(channelKey: 'key1', 
+  // channelName: 'reserNotif', 
+  // channelDescription: 'Description',
+  // defaultColor: Color(0XFF9050DD),
+  // ledColor: Colors.white,
+  // playSound: true,
+  // enableLights: true,
+  // enableVibration: true
+  // )
+  // ],
+  //   );
+  
   runApp(const MyApp());
 }
 
@@ -60,7 +69,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      home: const LoginPage(),
     );
   }
 }
+// notify()async {
+//   await AwesomeNotifications().createNotification(content: NotificationContent(id: 1, 
+//   channelKey: 'key1',
+//   title: "hello",
+//   body: "world"));
+// }

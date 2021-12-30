@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutterproject/widgets/mytoast.dart';
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart' as http ;
 import 'dart:convert';
-class addFlightADmin extends StatefulWidget {
-  const addFlightADmin({ Key? key }) : super(key: key);
 
-  @override
-  _addFlightADminState createState() => _addFlightADminState();
-}
+
+class AddFlightAdmin extends StatelessWidget {
+   AddFlightAdmin({ Key? key }) : super(key: key);
+
 final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
-class _addFlightADminState extends State<addFlightADmin> {
+
   final TextEditingController countryCT=TextEditingController();
   final TextEditingController allerCT=TextEditingController();
   final TextEditingController retourCT=TextEditingController();
@@ -29,9 +28,7 @@ Future addFlight(String country,String dateAller,String dateRetour,String prix,S
         'Remaining_Seats':RemainingSeats
       });
       print(res.statusCode);
-      setState(() {
-        status=res;
-      });
+      
       return json.decode(res.body);
 }
 
@@ -40,7 +37,7 @@ Future addFlight(String country,String dateAller,String dateRetour,String prix,S
       return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.orange[300],
-          title: Text("Add flight"),
+          title: const Text("Add flight"),
       ),
         body: Container(padding: const EdgeInsets.only(left:40,right:40),
         child: Form(
@@ -48,9 +45,9 @@ Future addFlight(String country,String dateAller,String dateRetour,String prix,S
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(),
+              const SizedBox(),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "Country"
                 ),
                 controller: countryCT,
@@ -60,9 +57,9 @@ Future addFlight(String country,String dateAller,String dateRetour,String prix,S
                   }
                 }
               ),
-              SizedBox(),
+              const SizedBox(),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "Departure Date"
                 ),
                 controller: allerCT,
@@ -72,9 +69,9 @@ Future addFlight(String country,String dateAller,String dateRetour,String prix,S
                   }
                 }
               ),
-              SizedBox(),
+              const SizedBox(),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "arrival Date"
                 ),
                 controller: retourCT,
@@ -84,9 +81,9 @@ Future addFlight(String country,String dateAller,String dateRetour,String prix,S
                   }
                 }
               ),
-              SizedBox(),
+              const SizedBox(),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "price"
                 ),
                 controller: PrixCT,
@@ -96,9 +93,9 @@ Future addFlight(String country,String dateAller,String dateRetour,String prix,S
                   }
                 }
               ),
-              SizedBox(),
+              const SizedBox(),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "Photo"
                 ),
                 controller: photoCT,
@@ -108,10 +105,10 @@ Future addFlight(String country,String dateAller,String dateRetour,String prix,S
                   }
                 }
               ),
-              SizedBox(),
+              const SizedBox(),
 
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "photo"
                 ),
                 controller: seatsCT,
@@ -121,19 +118,19 @@ Future addFlight(String country,String dateAller,String dateRetour,String prix,S
                   }
                 }
               ),
-              SizedBox(),
-              TextButton(child: Text("choose date"),
+              const SizedBox(),
+              TextButton(child: const Text("choose date"),
                    onPressed: () async {
                                 final pickedDate = await showDateRangePicker(
                                   context: context,
                                   lastDate:
-                                      DateTime.now().add(Duration(days: 365)),
-                                  firstDate: new DateTime.now(),
+                                      DateTime.now().add(const Duration(days: 365)),
+                                  firstDate: DateTime.now(),
                                 );
                               
                                 // CreateEventFinalValues.pickedTime = pickedDate;
-                                allerCT.text=pickedDate!.start.toString().substring(0,pickedDate!.start.toString().indexOf(" "));
-                                retourCT.text=pickedDate!.end.toString().substring(0,pickedDate!.end.toString().indexOf(" "));
+                                allerCT.text=pickedDate!.start.toString().substring(0,pickedDate.start.toString().indexOf(" "));
+                                retourCT.text=pickedDate.end.toString().substring(0,pickedDate.end.toString().indexOf(" "));
                                 
                               },
                             
@@ -142,7 +139,7 @@ Future addFlight(String country,String dateAller,String dateRetour,String prix,S
               
               ),
 
-              SizedBox(),
+              const SizedBox(),
               TextButton(onPressed:()async{
                 
                  await addFlight(countryCT.text, allerCT.text, retourCT.text, 
@@ -152,7 +149,7 @@ Future addFlight(String country,String dateAller,String dateRetour,String prix,S
                 
                 MyToast().showtoast(status.statusCode == 201 ? "added successfuly" : "verif your data");
               },
-              child:Text('ADD'),
+              child:const Text('ADD'),
               ),
               
             ],
@@ -161,4 +158,5 @@ Future addFlight(String country,String dateAller,String dateRetour,String prix,S
         )
     );
   }
+
 }

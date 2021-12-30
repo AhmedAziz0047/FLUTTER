@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutterproject/admin/add_flight_admin.dart';
-import 'package:flutterproject/admin/adminReservations.dart';
-import 'package:flutterproject/admin/adminUsers.dart' ;
 import 'package:flutterproject/admin/update_flight.dart';
-import 'package:flutterproject/widgets/mytoast.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:touchable_opacity/touchable_opacity.dart';
-class adminFlights extends StatefulWidget {
-  const adminFlights({ Key? key }) : super(key: key);
+class AdminFlights extends StatefulWidget {
+  const AdminFlights({ Key? key }) : super(key: key);
 
   @override
-  _adminFlightsState createState() => _adminFlightsState();
+  _AdminFlightsState createState() => _AdminFlightsState();
 }
 Future deleteFlight(String id)async{
   final deleteurl=(Uri.parse('http://192.168.1.16:3000/api/deleteFlight/$id'));
@@ -34,7 +31,7 @@ Future<List> getflights() async {
      }
   }
 
-class _adminFlightsState extends State<adminFlights> {
+class _AdminFlightsState extends State<AdminFlights> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,7 +98,7 @@ class _adminFlightsState extends State<adminFlights> {
                    Navigator.push(
                                    context,
                                    MaterialPageRoute(
-                                      builder: (context) => addFlightADmin()));
+                                      builder: (context) => AddFlightAdmin()));
               },
               backgroundColor: Colors.orange[900],
               child: const Icon(Icons.add),

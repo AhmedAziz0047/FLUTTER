@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-class addUser extends StatefulWidget {
-  const addUser({ Key? key }) : super(key: key);
+class AddUser extends StatefulWidget {
+  const AddUser({ Key? key }) : super(key: key);
 
   @override
-  _addUserState createState() => _addUserState();
+  _AddUserState createState() => _AddUserState();
 }
 
-class _addUserState extends State<addUser> {
+class _AddUserState extends State<AddUser> {
   @override
   Widget build(BuildContext context) {
     return Container(

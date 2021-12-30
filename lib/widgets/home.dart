@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutterproject/admin/adminFlights.dart';
-import 'package:flutterproject/admin/appbar_bottomnavbar.dart';
-import 'package:flutterproject/pages/acceuilFlight.dart';
+import 'package:flutterproject/pages/acceuil_flight.dart';
 
-import 'package:flutterproject/widgets/vols_item.dart';
-import 'package:flutterproject/pages/login_page.dart';
 
 class HomeScreen extends StatefulWidget {
-  int data;
-  HomeScreen({Key? key, required this.data}) : super(key: key);
+  final int data;
+  const HomeScreen({Key? key, required this.data}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -19,11 +15,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(appBar: AppBar(
-              title: Text("Our Trips"),
+              title: const Text("Our Trips"),
               backgroundColor: Colors.blue[900],
             ),
             backgroundColor: Colors.white,
-            body: acceuilFlight(),
+            body: AcceuilFlight(),
             // SingleChildScrollView(child:Wrap(children: List<Widget>.generate(5, (index) {return adminFlights();}))),
             )
         // body: Container(

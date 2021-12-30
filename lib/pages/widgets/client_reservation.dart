@@ -1,34 +1,32 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutterproject/pages/acceuilFlight.dart';
+
 import 'package:flutterproject/pages/widgets/bg_client_reservation.dart';
-import 'package:flutterproject/widgets/mytoast.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'package:timezone/timezone.dart' as tz;
-import 'package:timezone/data/latest.dart' as tz;
 
-import 'notification_service.dart';
 
-class clientReservation extends StatefulWidget {
-  String id;
-   clientReservation({ Key? key, required this.id }) : super(key: key);
+
+class ClientReservation extends StatefulWidget {
+  final String id;
+   const ClientReservation({ Key? key, required this.id }) : super(key: key);
     
   @override
-  _clientReservationState createState() => _clientReservationState(id);
+  _ClientReservationState createState() => _ClientReservationState(id);
 }
-Future addReservationClient(String Name,String LastN,String Country,String Email)async{
+Future addReservationClient(String name,String lastN,String country,String email)async{
       var url='http://192.168.1.16:3000/api/addReservations';
       final res= await http.post(Uri.parse(url),body: {
-       'country':Country,
-        'nomclient':LastN,
-        'prenomclient':Name,
-        'email':Email
+       'country':country,
+        'nomclient':lastN,
+        'prenomclient':name,
+        'email':email
       });
-      print(res.statusCode);
+      // print(res.statusCode);
       return json.decode(res.body);
 }
   
@@ -43,17 +41,17 @@ const TextStyle kHeading=TextStyle(fontSize: 60,
 const TextStyle inputStyle=TextStyle(fontSize: 20,color: Colors.white);
 // const TextStyle inputStyle=TextStyle(fontSize: 20,color:Colors.white);
 
-class _clientReservationState extends State<clientReservation> {
+class _ClientReservationState extends State<ClientReservation> {
   
   String id;
   
-  _clientReservationState(this.id);
+  _ClientReservationState(this.id);
   @override
   Widget build(BuildContext context) {
     final TextEditingController countryCT=TextEditingController(text:id );
     return Stack(
      children:[
-       bgClientR(),
+       const bgClientR(),
        Scaffold(
          backgroundColor:Colors.transparent,
          body:SafeArea(
@@ -65,7 +63,7 @@ class _clientReservationState extends State<clientReservation> {
               //     Text('Take The Trip',style: kHeading,),
               //     )
               // ),
-              SizedBox(
+              const SizedBox(
                 height: 100,
               ),
               Container(
@@ -82,11 +80,11 @@ class _clientReservationState extends State<clientReservation> {
                         ),
                         child: TextField(
                             controller: nameCT,
-                            decoration: InputDecoration(
-                            contentPadding:  const EdgeInsets.symmetric(vertical: 20),
+                            decoration: const InputDecoration(
+                            contentPadding:  EdgeInsets.symmetric(vertical: 20),
                             border: InputBorder.none,
                             hintText: "Name",
-                            prefixIcon: Padding(padding: const EdgeInsets.symmetric(horizontal: 20),
+                            prefixIcon: Padding(padding: EdgeInsets.symmetric(horizontal: 20),
                                                 child: Icon(FontAwesomeIcons.user,color: Colors.white,size: 30,),
                             ),
                             hintStyle:inputStyle,
@@ -103,11 +101,11 @@ class _clientReservationState extends State<clientReservation> {
                       ),
                       child: TextField(
                           controller: last,
-                          decoration: InputDecoration(
-                          contentPadding:  const EdgeInsets.symmetric(vertical: 20),
+                          decoration: const InputDecoration(
+                          contentPadding:  EdgeInsets.symmetric(vertical: 20),
                           border: InputBorder.none,
                           hintText: "Last Name",
-                          prefixIcon: Padding(padding: const EdgeInsets.symmetric(horizontal: 20),
+                          prefixIcon: Padding(padding: EdgeInsets.symmetric(horizontal: 20),
                                               child: Icon(FontAwesomeIcons.user,color: Colors.white,size: 30,),
                           ),
                           hintStyle:inputStyle,
@@ -125,11 +123,11 @@ class _clientReservationState extends State<clientReservation> {
                         ),
                         child: TextField(
                             controller: email,
-                            decoration: InputDecoration(
-                            contentPadding:  const EdgeInsets.symmetric(vertical: 20),
+                            decoration: const InputDecoration(
+                            contentPadding:  EdgeInsets.symmetric(vertical: 20),
                             border: InputBorder.none,
                             hintText: "Email",
-                            prefixIcon: Padding(padding: const EdgeInsets.symmetric(horizontal: 20),
+                            prefixIcon: Padding(padding: EdgeInsets.symmetric(horizontal: 20),
                                                 child: Icon(FontAwesomeIcons.solidEnvelope,color: Colors.white,size: 30,),
                             ),
                             hintStyle:inputStyle,
@@ -149,11 +147,11 @@ class _clientReservationState extends State<clientReservation> {
                         child: TextField(
                             readOnly: true,
                             controller: countryCT,
-                            decoration: InputDecoration(
-                            contentPadding:  const EdgeInsets.symmetric(vertical: 20),
+                            decoration: const InputDecoration(
+                            contentPadding:  EdgeInsets.symmetric(vertical: 20),
                             border: InputBorder.none,
                             hintText: "Destination",
-                            prefixIcon: Padding(padding: const EdgeInsets.symmetric(horizontal: 20),
+                            prefixIcon: Padding(padding: EdgeInsets.symmetric(horizontal: 20),
                                                 child: Icon(FontAwesomeIcons.planeArrival,color: Colors.white,size: 30,),
                             ),
                             hintStyle:inputStyle,
@@ -167,8 +165,9 @@ class _clientReservationState extends State<clientReservation> {
                          TextButton(onPressed: ()async{
                           //  MyToast().showtoast("fdsgfsd");
                               //  await NotificationService().showNotification(1,"title","body",5);
-                            await addReservationClient(nameCT.text,last.text,countryCT.text,email.text );
-                        }, child: Text("Take a seat")),
+                            // await addReservationClient(nameCT.text,last.text,countryCT.text,email.text );
+                            // main.notify();
+                        }, child: const Text("Take a seat")),
                  
                     
                     

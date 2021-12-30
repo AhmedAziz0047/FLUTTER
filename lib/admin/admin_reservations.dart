@@ -5,11 +5,11 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:touchable_opacity/touchable_opacity.dart';
-class adminReservations extends StatefulWidget {
-  const adminReservations({ Key? key }) : super(key: key);
+class AdminReservations extends StatefulWidget {
+  const AdminReservations({ Key? key }) : super(key: key);
 
   @override
-  _adminReservationsState createState() => _adminReservationsState();
+  _AdminReservationsState createState() => _AdminReservationsState();
 }
 Future deleteRes(String id)async{
   final deleteurl=(Uri.parse('http://192.168.1.16:3000/api/deleteReservations/$id'));
@@ -31,7 +31,7 @@ Future<List> getRes() async {
      }
   }
 
-class _adminReservationsState extends State<adminReservations> {
+class _AdminReservationsState extends State<AdminReservations> {
   @override
   Widget build(BuildContext context) {
      return Scaffold(
@@ -96,7 +96,7 @@ class _adminReservationsState extends State<adminReservations> {
                    Navigator.push(
                                    context,
                                    MaterialPageRoute(
-                                      builder: (context) => addReservationAdmin()));
+                                      builder: (context) => AddReservationAdmin()));
               },
               backgroundColor: Colors.orange[900],
               child: const Icon(Icons.add),

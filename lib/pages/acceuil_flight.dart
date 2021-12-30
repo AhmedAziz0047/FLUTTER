@@ -1,11 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutterproject/pages/widgets/client_reservation.dart';
-import 'package:flutterproject/widgets/mytoast.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-class acceuilFlight extends StatelessWidget {
+class AcceuilFlight extends StatelessWidget {
+  const AcceuilFlight({Key? key}) : super(key: key);
+
   
 
 
@@ -14,8 +15,8 @@ class acceuilFlight extends StatelessWidget {
        print("api works");
         var res =await http.get(Uri.parse('http://192.168.1.16:3000/api/getFlights'));
         var decodedData=jsonDecode(res.body);
-        print(decodedData);
-        print("eearz");
+        // print(decodedData);
+        // print("eearz");
         return decodedData;
      }catch(SocketException){
        return Future.error("api not works");
@@ -25,10 +26,9 @@ class acceuilFlight extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height=MediaQuery.of(context).size.height;
     return Scaffold(
           appBar: AppBar(
-            title: Text("Our Trips"),
+            title: const Text("Our Trips"),
           ),
           body: SingleChildScrollView(child: FutureBuilder<List>(
             future: getflights(),
@@ -41,7 +41,7 @@ class acceuilFlight extends StatelessWidget {
                 }
                  
                 if(snapshot.connectionState==ConnectionState.waiting){
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                     );
                 }
@@ -96,7 +96,7 @@ class acceuilFlight extends StatelessWidget {
                                         Navigator.push(
                                    context,
                                    MaterialPageRoute(
-                                      builder: (context) => clientReservation(id:data![index]["country"],)));
+                                      builder: (context) => ClientReservation(id:data[index]["country"],)));
                                       },
                                 );
                           }));
