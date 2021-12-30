@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 
 import 'package:flutterproject/pages/widgets/bg_client_reservation.dart';
 import 'package:flutterproject/pages/widgets/service.dart';
+import 'package:flutterproject/widgets/mytoast.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
@@ -28,12 +29,16 @@ Future addReservationClient(String name,String lastN,String country,String email
         'nomclient':lastN,
         'prenomclient':name,
         'email':email
-      });if (res.statusCode==201){
+      });
+      if (res.statusCode==201){
         String ch="0123456789";
                            String confN ="";
                            for(int i=0;i<30;i++)
                               {confN+= ch[Random().nextInt(10)];}
         Service().notify(nameCT.text,last.text,confN);
+      }
+      else {
+              MyToast().showtoast("Check your informations");
       }
        
       // print(res.statusCode);
