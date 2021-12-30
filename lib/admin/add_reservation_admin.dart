@@ -1,21 +1,13 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:flutterproject/Services/flights_reservation_service.dart';
+
 
 class AddReservationAdmin extends StatelessWidget {
   AddReservationAdmin({ Key? key }) : super(key: key);
 
-   Future addReservationAPI(String name,String lastN,String country,String email)async{
-      var url='http://192.168.1.16:3000/api/addReservations';
-      final res= await http.post(Uri.parse(url),body: {
-       'country':country,
-        'nomclient':lastN,
-        'prenomclient':name,
-        'email':email
-      });
-      print(res.statusCode);
-      return json.decode(res.body);
-}
+
   final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
    final TextEditingController country=TextEditingController();
   final TextEditingController nameCT=TextEditingController();
@@ -86,7 +78,7 @@ class AddReservationAdmin extends StatelessWidget {
               const SizedBox(),
               OutlineButton(onPressed:()async{
                 
-                final  reser=await addReservationAPI(nameCT.text,last.text,country.text,email.text);
+                final  reser=await Flights_reservation_service().addReservationAPI(context,nameCT.text,last.text,country.text,email.text);
                 
                 
               },
