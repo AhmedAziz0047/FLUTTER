@@ -17,6 +17,7 @@ class _AdminFlightsState extends State<AdminFlights> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.brown[200],
         body: FutureBuilder<List>(
           future: Flights_reservation_service().getflights(),
             builder: (context,snapshot){
@@ -42,6 +43,7 @@ class _AdminFlightsState extends State<AdminFlights> {
                     itemBuilder: (context, index) {
                       return TouchableOpacity(child:  Card(
                         child: ListTile(
+                          tileColor: Colors.brown[100],
                           title: Text(data![index]['country']),
                           subtitle: Text(data[index]['date_aller']),
                           leading: CircleAvatar(

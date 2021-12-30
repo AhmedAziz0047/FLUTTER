@@ -16,6 +16,7 @@ class _AdminReservationsState extends State<AdminReservations> {
   @override
   Widget build(BuildContext context) {
      return Scaffold(
+        backgroundColor: Colors.brown[200],
         body: FutureBuilder<List>(
           future: Flights_reservation_service().getRes(),
             builder: (context,snapshot){
@@ -26,7 +27,7 @@ class _AdminReservationsState extends State<AdminReservations> {
                 }
                  
                 if(snapshot.connectionState==ConnectionState.waiting){
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                     );
                 }
@@ -40,11 +41,13 @@ class _AdminReservationsState extends State<AdminReservations> {
                   }
                 
                     return ListView.separated(
-                  separatorBuilder: (BuildContext context, int index) => const Divider(),
+                    
+                    separatorBuilder: (BuildContext context, int index) => const Divider(),
                     itemCount:snapshot.data!.length ,
                     itemBuilder: (context, index) {
                       return TouchableOpacity(child:  Card(
                         child: ListTile(
+                          tileColor: Colors.brown[100],
                           title: Text(data[index]['nomclient']),
                           subtitle: Text(data[index]['prenomclient']),
                           leading: Text(data[index]['email']),
@@ -52,7 +55,7 @@ class _AdminReservationsState extends State<AdminReservations> {
                                 await Flights_reservation_service().deleteRes(data[index]['_id']);
                                       setState(() {
                                       });
-                          }, icon: Icon(Icons.delete)),  
+                          }, icon: const Icon(Icons.delete)),  
                         ),
                       ),
                       onTap: (){

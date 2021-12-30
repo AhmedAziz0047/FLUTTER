@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutterproject/Services/flights_reservation_service.dart';
 
@@ -16,8 +14,9 @@ class AddReservationAdmin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor:Colors.brown[200],
         appBar: AppBar(
-          backgroundColor: Colors.orange[500],
+          backgroundColor: Colors.brown[400],
           title: const Text("Add new reservation"),
       ),
         body: Container(padding: const EdgeInsets.only(left:40,right:40),

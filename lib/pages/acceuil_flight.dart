@@ -42,13 +42,13 @@ class AcceuilFlight extends StatelessWidget {
                           children: List<Widget>.generate(data!.length, (index) {
                                 return TouchableOpacity(
                                   child: Card(
+                                      color: Colors.grey[350],
                                       elevation: 8.0,
                                       child: Column(
+                                        
                                         children: [
-                                          Container(
-                                            child: ClipRRect(borderRadius: BorderRadius.only(bottomRight: Radius.circular(15),bottomLeft: Radius.circular(15)),child: 
-                                            Image.network("http://192.168.1.16:4200/" + data[index]['photo']),),
-                                          ),
+                                          ClipRRect(borderRadius: const BorderRadius.only(bottomRight: Radius.circular(0),bottomLeft: Radius.circular(0)),child: 
+                                          Image.network("http://192.168.1.16:4200/" + data[index]['photo']),),
                                          
                                           ListTile(
                                             
@@ -57,10 +57,10 @@ class AcceuilFlight extends StatelessWidget {
                                               mainAxisAlignment: MainAxisAlignment.start,
                                               children: [
                                               Text(data[index]["date_aller"]),
-                                              SizedBox(width: 10),
+                                              const SizedBox(width: 10),
                                               Text(data[index]["date_retour"])
                                             ],), 
-                                            trailing: Icon(Icons.favorite_outline),
+                                            
                                           ),
                                           
                                           // Container(
@@ -73,8 +73,13 @@ class AcceuilFlight extends StatelessWidget {
                                           ButtonBar(
                                             children: [
                                               TextButton(
-                                                child: const Text("Take your place"),
-                                                onPressed: () {/* ... */},
+                                                child: const Text("Take your place",style: TextStyle(color: Colors.black),),
+                                                onPressed: () {
+                                                  Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                              builder: (context) => ClientReservation(id:data[index]["country"],)));
+                                                },
                                               ),
                                             ],
                                           )
@@ -82,9 +87,9 @@ class AcceuilFlight extends StatelessWidget {
                                       )),
                                       onTap: (){
                                         Navigator.push(
-                                   context,
-                                   MaterialPageRoute(
-                                      builder: (context) => ClientReservation(id:data[index]["country"],)));
+                                              context,
+                                              MaterialPageRoute(
+                                              builder: (context) => ClientReservation(id:data[index]["country"],)));
                                       },
                                 );
                           }));
