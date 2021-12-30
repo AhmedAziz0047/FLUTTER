@@ -114,16 +114,18 @@ final password=TextEditingController();
                                   ),
                                   onPressed: () {
                                     //After successful login we will redirect to profile page. Let's create profile page now
-                                    if (username.text=="admin"){ Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                              builder: (context) => acceuilFlight()));
-                                   }
-                                            else{
-                                              Navigator.push(
+                                    if (username.text=="admin"){ 
+                                               Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) => appbar_bottomnavbar()));
+                                              
+                                   }
+                                            else{
+                                             Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                              builder: (context) => acceuilFlight()));
                                             }
                                   },
                                 ),

@@ -2,6 +2,7 @@
     package="com.example.flutterproject">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
+        
         android:label="flutterproject"
         android:icon="@mipmap/ic_launcher">
         <activity

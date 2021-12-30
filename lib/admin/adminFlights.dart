@@ -64,14 +64,14 @@ class _adminFlightsState extends State<adminFlights> {
                       return TouchableOpacity(child:  Card(
                         child: ListTile(
                           title: Text(data![index]['country']),
-                          subtitle: Text(data![index]['date_aller']),
+                          subtitle: Text(data[index]['date_aller']),
                           leading: CircleAvatar(
                             backgroundImage: NetworkImage(
                               "http://192.168.1.16:4200/" + data[index]['photo']
                             ),
                           ),
                           trailing: IconButton(onPressed: ()async{
-                                await deleteFlight(data![index]['_id']);
+                                await deleteFlight(data[index]['_id']);
                                       setState(() {
                                       });
                           }, icon: Icon(Icons.delete)),
@@ -82,7 +82,7 @@ class _adminFlightsState extends State<adminFlights> {
                         Navigator.push(
                                    context,
                                    MaterialPageRoute(
-                                      builder: (context) => UpdateFlight(id: data![index]["_id"],)));
+                                      builder: (context) => UpdateFlight(id: data[index]["_id"],)));
 
         
                       },

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutterproject/admin/add_reservation_admin.dart';
+import 'package:flutterproject/admin/update_reservation.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import 'package:touchable_opacity/touchable_opacity.dart';
 class adminReservations extends StatefulWidget {
   const adminReservations({ Key? key }) : super(key: key);
 
@@ -49,25 +52,36 @@ class _adminReservationsState extends State<adminReservations> {
                if (!snapshot.hasData){
                   return Text("no data");
                 }
+                  var data=snapshot.data;
 
-                var data=snapshot.data;
+                  if (data==null){
+                    return Text("null");
+                  }
+                
                     return ListView.separated(
                   separatorBuilder: (BuildContext context, int index) => const Divider(),
                     itemCount:snapshot.data!.length ,
                     itemBuilder: (context, index) {
-                      return Card(
+                      return TouchableOpacity(child:  Card(
                         child: ListTile(
-                          title: Text(data![index]['email']),
-                          subtitle: Text(data![index]['nomclient'] +" " + data![index]['prenomclient' ]),
-                          leading: Text(data![index]['country']),
-                          
+                          title: Text(data[index]['nomclient']),
+                          subtitle: Text(data[index]['prenomclient']),
+                          leading: Text(data[index]['email']),
                           trailing: IconButton(onPressed: ()async{
-                                await deleteRes(data![index]['_id']);
+                                await deleteRes(data[index]['_id']);
                                       setState(() {
                                       });
-                          }, icon: Icon(Icons.delete)),
-                            
+                          }, icon: Icon(Icons.delete)),  
                         ),
+                      ),
+                      onTap: (){
+                        Navigator.push(
+                                   context,
+                                   MaterialPageRoute(
+                                      builder: (context) => UpdateReserv(id: data[index]["_id"],)));
+
+        
+                      },
                       );
                    
 
@@ -75,17 +89,19 @@ class _adminReservationsState extends State<adminReservations> {
                     },
                 );
             }
+            
         ),
-         floatingActionButton: FloatingActionButton(
+          floatingActionButton: FloatingActionButton(
               onPressed: (){
-                Navigator.push(
+                   Navigator.push(
                                    context,
                                    MaterialPageRoute(
                                       builder: (context) => addReservationAdmin()));
               },
-              backgroundColor: Colors.orange[400],
+              backgroundColor: Colors.orange[900],
               child: const Icon(Icons.add),
             ),
+         
           
         
             

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutterproject/pages/acceuilFlight.dart';
 import 'package:flutterproject/pages/login_page.dart';
+import 'package:flutterproject/pages/widgets/notification_service.dart';
 
-import 'package:flutterproject/widgets/home.dart';
-import 'widgets/vols_item.dart';
-import 'package:hexcolor/hexcolor.dart';
+import 'package:timezone/data/latest.dart' as tz;
 
 // void main() {
 //   runApp(LoginUiApp());
@@ -43,6 +41,10 @@ import 'package:hexcolor/hexcolor.dart';
 // }
 
 void main() {
+  
+  WidgetsFlutterBinding.ensureInitialized();
+  NotificationService().initNotification();
+  tz.initializeTimeZones();
   runApp(const MyApp());
 }
 
