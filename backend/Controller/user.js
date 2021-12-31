@@ -52,3 +52,36 @@ exports.profile = (req, res, next) => {
       .then(user => res.status(200).json(user))
       .catch(error => res.status(500).json({ error }));
   };
+
+  exports.getUsers=(req, res)=>{
+    User.find()
+    .then(user=>res.send(user))
+    .catch(err=>res.status(400).json({error: err.message}))
+  }
+  
+  exports.getUserById=(req, res)=>{
+    User.findOne({_id: req.params.id})
+    .then(user=>res.send(user))
+    .catch(err=>res.status(400).json({error: err.message}))
+  }
+
+  
+  exports.createUser = (req, res, next) => {
+    const user = new User({
+      ...req.body
+    });
+    user.save()
+      .then(() => res.status(201).json({ message: 'User Created  !'}))
+      .catch(error => res.status(400).json({ error }));
+  };
+  exports.deleteUser=(req, res)=>{
+    User.deleteOne({ _id: req.params.id })
+    .then(() => res.status(200).json({ message: 'User Deleted !'}))
+    .catch(error => res.status(400).json({ error }));
+  }
+  
+  exports.updateUSer  = (req, res, next) => {
+    User.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
+      .then(() => res.status(200).json({ message: 'User Updated !'}))
+      .catch(error => res.status(400).json({ error }));
+  };
