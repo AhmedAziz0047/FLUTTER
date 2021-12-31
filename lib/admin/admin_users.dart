@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterproject/admin/add_user.dart';
 import 'package:flutterproject/Services/flights_reservation_service.dart';
+import 'package:flutterproject/admin/update_user.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
 
 class AdminUsers extends StatefulWidget {
@@ -59,13 +60,14 @@ class _AdminUsersState extends State<AdminUsers> {
                           icon: const Icon(Icons.delete)),
                     ),
                   ),
-                  // onTap: (){
-                  //   Navigator.push(
-                  //              context,
-                  //              MaterialPageRoute(
-                  //                 builder: (context) => UpdateUser(id: data[index]["_id"],)));
-
-                  // },
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => UpdateUser(
+                                  id: data[index]["_id"],
+                                )));
+                  },
                 );
               },
             );
