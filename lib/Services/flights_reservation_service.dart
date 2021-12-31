@@ -214,7 +214,7 @@ class Flights_reservation_service {
 
   // User admin
   Future AddUserAPI(context, String name, String email, String password) async {
-    var url = 'http://192.168.1.71:3000/api/addUser';
+    var url = 'http://192.168.1.71:3000/api/auth/api/addUser';
     final res = await http.post(Uri.parse(url),
         body: {'name': name, 'email': email, 'password': password});
     print(res.statusCode);
@@ -230,7 +230,7 @@ class Flights_reservation_service {
 //addUserClient
   Future addUSerClient(
       context, String name, String email, String password) async {
-    var url = 'http://192.168.1.71:3000/api/addUser';
+    var url = 'http://192.168.1.71:3000/api/auth/api/addUser';
     final res = await http.post(Uri.parse(url),
         body: {'name': name, 'email': email, 'password': password});
     if (res.statusCode == 200) {
@@ -254,8 +254,8 @@ class Flights_reservation_service {
   Future<List> getUSer() async {
     try {
       print("api works");
-      var res =
-          await http.get(Uri.parse('http://192.168.1.71:3000/api/getUsers'));
+      var res = await http
+          .get(Uri.parse('http://192.168.1.71:3000/api/auth/api/getUsers'));
       var decodedData = jsonDecode(res.body);
       print(decodedData);
       print("works");
@@ -268,7 +268,7 @@ class Flights_reservation_service {
 //updateUser
   Future updateUseradmin(
       context, String name, String email, String password) async {
-    final url = Uri.parse('http://192.168.1.71:3000/api/editUser/$id');
+    final url = Uri.parse('http://192.168.1.71:3000/api/auth/api/editUser/$id');
     final res = await http
         .put(url, body: {'name': name, 'email': email, 'password': password});
     if (res.statusCode == 200) {
@@ -284,7 +284,7 @@ class Flights_reservation_service {
 //get userreservationbyid
   Future<Map> getOneUser(String id) async {
     final deleteurl =
-        (Uri.parse('http://192.168.1.71:3000/api/getUserbyid/$id'));
+        (Uri.parse('http://192.168.1.71:3000/api/auth/api/getUserbyid/$id'));
     final response = await http.get(deleteurl);
     // print(response.statusCode);
     // print(response.body);
@@ -294,7 +294,7 @@ class Flights_reservation_service {
   //deleteUser
   Future deleteUser(String id) async {
     final deleteurl =
-        (Uri.parse('http://192.168.1.71:3000/api/deleteUser/$id'));
+        (Uri.parse('http://192.168.1.71:3000/api/auth/api/deleteUser/$id'));
     final response = await http.delete(deleteurl);
     print(response.statusCode);
     print(response.body);
