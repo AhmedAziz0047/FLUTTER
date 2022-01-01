@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutterproject/Services/flights_reservation_service.dart';
 
-class AddUser extends StatefulWidget {
-  AddUser({Key? key}) : super(key: key);
+class AddUserAdmin extends StatelessWidget {
+  AddUserAdmin({Key? key}) : super(key: key);
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController name = TextEditingController();
@@ -62,11 +62,5 @@ class AddUser extends StatefulWidget {
             ),
           ),
         ));
-  }
-
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    throw UnimplementedError();
   }
 }

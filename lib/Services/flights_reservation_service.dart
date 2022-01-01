@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterproject/admin/add_user.dart';
+import 'package:flutterproject/admin/admin_users.dart';
 import 'package:flutterproject/admin/admin_flights.dart';
 import 'package:flutterproject/admin/admin_reservations.dart';
 import 'package:flutterproject/admin/appbar_bottomnavbar.dart';
@@ -35,7 +35,7 @@ class Flights_reservation_service {
 // addFlight
   Future addFlight(context, String country, String dateAller, String dateRetour,
       String prix, String photo, String remainingSeats) async {
-    var url = 'http://192.168.1.71:3000/api/addFlight';
+    var url = 'http://192.168.1.70:3000/api/addFlight';
     final res = await http.post(Uri.parse(url), body: {
       'country': country,
       'date_aller': dateAller,
@@ -60,7 +60,7 @@ class Flights_reservation_service {
     try {
       print("api works");
       var res =
-          await http.get(Uri.parse('http://192.168.1.71:3000/api/getFlights'));
+          await http.get(Uri.parse('http://192.168.1.70:3000/api/getFlights'));
       var decodedData = jsonDecode(res.body);
       // print(decodedData);
       // print("eearz");
@@ -73,7 +73,7 @@ class Flights_reservation_service {
 //updateFlight
   Future updateFlight(String country, String dateAller, String dateRetour,
       String prix, String photo, String remainingSeats, String id) async {
-    final url = Uri.parse('http://192.168.1.71:3000/api/editFlight/$id');
+    final url = Uri.parse('http://192.168.1.70:3000/api/editFlight/$id');
     final res = await http.put(url, body: {
       'country': country,
       'date_aller': dateAller,
@@ -90,7 +90,7 @@ class Flights_reservation_service {
 //deleteFlight
   Future deleteFlight(String id) async {
     final deleteurl =
-        (Uri.parse('http://192.168.1.71:3000/api/deleteFlight/$id'));
+        (Uri.parse('http://192.168.1.70:3000/api/deleteFlight/$id'));
     final response = await http.delete(deleteurl);
     print(response.statusCode);
     print(response.body);
@@ -100,7 +100,7 @@ class Flights_reservation_service {
 //getFlightByid
   Future<Map> getOneFlight(String id) async {
     final deleteurl =
-        (Uri.parse('http://192.168.1.71:3000/api/getFlightbyid/$id'));
+        (Uri.parse('http://192.168.1.70:3000/api/getFlightbyid/$id'));
     final response = await http.get(deleteurl);
     // print(response.statusCode);
     // print(response.body);
@@ -112,7 +112,7 @@ class Flights_reservation_service {
 // addReservation admin
   Future addReservationAPI(
       context, String name, String lastN, String country, String email) async {
-    var url = 'http://192.168.1.71:3000/api/addReservations';
+    var url = 'http://192.168.1.70:3000/api/addReservations';
     final res = await http.post(Uri.parse(url), body: {
       'country': country,
       'nomclient': lastN,
@@ -132,7 +132,7 @@ class Flights_reservation_service {
 //addReservationClient
   Future addReservationClient(
       context, String name, String lastN, String country, String email) async {
-    var url = 'http://192.168.1.71:3000/api/addReservations';
+    var url = 'http://192.168.1.70:3000/api/addReservations';
     final res = await http.post(Uri.parse(url), body: {
       'country': country,
       'nomclient': lastN,
@@ -161,7 +161,7 @@ class Flights_reservation_service {
     try {
       print("api works");
       var res = await http
-          .get(Uri.parse('http://192.168.1.71:3000/api/getReservations'));
+          .get(Uri.parse('http://192.168.1.70:3000/api/getReservations'));
       var decodedData = jsonDecode(res.body);
       print(decodedData);
       print("works");
@@ -174,7 +174,7 @@ class Flights_reservation_service {
 //updateReservation
   Future updateReservadmin(context, String country, String nameP, String lastP,
       String emailP, String id) async {
-    final url = Uri.parse('http://192.168.1.71:3000/api/editReservations/$id');
+    final url = Uri.parse('http://192.168.1.70:3000/api/editReservations/$id');
     final res = await http.put(url, body: {
       'country': country,
       'nomclient': nameP,
@@ -194,7 +194,7 @@ class Flights_reservation_service {
 //get reservationbyid
   Future<Map> getOneReserv(String id) async {
     final deleteurl =
-        (Uri.parse('http://192.168.1.71:3000/api/getReservbyid/$id'));
+        (Uri.parse('http://192.168.1.70:3000/api/getReservbyid/$id'));
     final response = await http.get(deleteurl);
     // print(response.statusCode);
     // print(response.body);
@@ -204,7 +204,7 @@ class Flights_reservation_service {
   //deleteReservation
   Future deleteRes(String id) async {
     final deleteurl =
-        (Uri.parse('http://192.168.1.71:3000/api/deleteReservations/$id'));
+        (Uri.parse('http://192.168.1.70:3000/api/deleteReservations/$id'));
     final response = await http.delete(deleteurl);
     print(response.statusCode);
     print(response.body);
@@ -214,7 +214,7 @@ class Flights_reservation_service {
 
   // User admin
   Future AddUserAPI(context, String name, String email, String password) async {
-    var url = 'http://192.168.1.71:3000/api/auth/api/addUser';
+    var url = 'http://192.168.1.70:3000/api/auth/api/addUser';
     final res = await http.post(Uri.parse(url),
         body: {'name': name, 'email': email, 'password': password});
     print(res.statusCode);
@@ -230,7 +230,7 @@ class Flights_reservation_service {
 //addUserClient
   Future addUSerClient(
       context, String name, String email, String password) async {
-    var url = 'http://192.168.1.71:3000/api/auth/api/addUser';
+    var url = 'http://192.168.1.70:3000/api/auth/api/addUser';
     final res = await http.post(Uri.parse(url),
         body: {'name': name, 'email': email, 'password': password});
     if (res.statusCode == 200) {
@@ -255,7 +255,7 @@ class Flights_reservation_service {
     try {
       print("api works");
       var res = await http
-          .get(Uri.parse('http://192.168.1.71:3000/api/auth/api/getUsers'));
+          .get(Uri.parse('http://192.168.1.70:3000/api/auth/api/getUsers'));
       var decodedData = jsonDecode(res.body);
       print(decodedData);
       print("works");
@@ -268,7 +268,7 @@ class Flights_reservation_service {
 //updateUser
   Future updateUseradmin(
       context, String name, String email, String password) async {
-    final url = Uri.parse('http://192.168.1.71:3000/api/auth/api/editUser/$id');
+    final url = Uri.parse('http://192.168.1.70:3000/api/auth/api/editUser/$id');
     final res = await http
         .put(url, body: {'name': name, 'email': email, 'password': password});
     if (res.statusCode == 200) {
@@ -284,7 +284,7 @@ class Flights_reservation_service {
 //get userreservationbyid
   Future<Map> getOneUser(String id) async {
     final deleteurl =
-        (Uri.parse('http://192.168.1.71:3000/api/auth/api/getUserbyid/$id'));
+        (Uri.parse('http://192.168.1.70:3000/api/auth/api/getUserbyid/$id'));
     final response = await http.get(deleteurl);
     // print(response.statusCode);
     // print(response.body);
@@ -294,7 +294,7 @@ class Flights_reservation_service {
   //deleteUser
   Future deleteUser(String id) async {
     final deleteurl =
-        (Uri.parse('http://192.168.1.71:3000/api/auth/api/deleteUser/$id'));
+        (Uri.parse('http://192.168.1.70:3000/api/auth/api/deleteUser/$id'));
     final response = await http.delete(deleteurl);
     print(response.statusCode);
     print(response.body);

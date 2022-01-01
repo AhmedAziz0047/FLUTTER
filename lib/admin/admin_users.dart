@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterproject/admin/add_user.dart';
+import 'package:flutterproject/admin/add_user_admin.dart';
 import 'package:flutterproject/Services/flights_reservation_service.dart';
 import 'package:flutterproject/admin/update_user.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
@@ -75,7 +75,7 @@ class _AdminUsersState extends State<AdminUsers> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AddUser()));
+              context, MaterialPageRoute(builder: (context) => AddUserAdmin()));
         },
         backgroundColor: Colors.orange[900],
         child: const Icon(Icons.add),
