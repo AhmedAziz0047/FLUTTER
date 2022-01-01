@@ -10,7 +10,6 @@ import 'registration_page.dart';
 import 'widgets/header_widget.dart';
 
 class LoginPage extends StatefulWidget {
-  
   const LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -18,8 +17,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final username=TextEditingController();
-final password=TextEditingController();
+  final username = TextEditingController();
+  final password = TextEditingController();
   final double _headerHeight = 250;
   final Key _formKey = GlobalKey<FormState>();
 
@@ -78,7 +77,8 @@ final password=TextEditingController();
                               ),
                               const SizedBox(height: 15.0),
                               Container(
-                                margin: const EdgeInsets.fromLTRB(10, 0, 10, 20),
+                                margin:
+                                    const EdgeInsets.fromLTRB(10, 0, 10, 20),
                                 alignment: Alignment.topRight,
                                 child: GestureDetector(
                                   onTap: () {
@@ -102,8 +102,8 @@ final password=TextEditingController();
                                 child: ElevatedButton(
                                   style: ThemeHelper().buttonStyle(),
                                   child: Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(40, 10, 40, 10),
+                                    padding: const EdgeInsets.fromLTRB(
+                                        40, 10, 40, 10),
                                     child: Text(
                                       'Sign In'.toUpperCase(),
                                       style: const TextStyle(
@@ -114,27 +114,29 @@ final password=TextEditingController();
                                   ),
                                   onPressed: () {
                                     //After successful login we will redirect to profile page. Let's create profile page now
-                                    if (username.text=="admin"){ 
-                                               Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => const AppbarBottomnavbar()));
-                                              
-                                   }
-                                            else{
-                                             Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                              builder: (context) => const AcceuilFlight()));
-                                            }
+                                    if (username.text == "admin") {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const AppbarBottomnavbar()));
+                                    } else {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const LoginPage()));
+                                    }
                                   },
                                 ),
                               ),
                               Container(
-                                margin: const EdgeInsets.fromLTRB(10, 20, 10, 20),
+                                margin:
+                                    const EdgeInsets.fromLTRB(10, 20, 10, 20),
                                 //child: Text('Don\'t have an account? Create'),
                                 child: Text.rich(TextSpan(children: [
-                                  const TextSpan(text: "Don\'t have an account? "),
+                                  const TextSpan(
+                                      text: "Don\'t have an account? "),
                                   TextSpan(
                                     text: 'Create',
                                     recognizer: TapGestureRecognizer()
@@ -162,4 +164,3 @@ final password=TextEditingController();
     );
   }
 }
-

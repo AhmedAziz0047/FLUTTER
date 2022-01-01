@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterproject/Services/flights_reservation_service.dart';
 import 'package:flutterproject/common/theme_helper.dart';
 import 'package:flutterproject/pages/login_page.dart';
 import 'package:flutterproject/pages/widgets/header_widget.dart';
@@ -8,7 +9,6 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:flutterproject/widgets/home.dart';
 
 // import 'profile_page.dart';
-
 
 class RegistrationPage extends StatefulWidget {
   @override
@@ -19,6 +19,9 @@ class RegistrationPage extends StatefulWidget {
 
 class _RegistrationPageState extends State<RegistrationPage> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController name = TextEditingController();
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
   bool checkedValue = false;
   bool checkboxValue = false;
 
@@ -68,7 +71,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 ),
                               ),
                               Container(
-                                padding:const EdgeInsets.fromLTRB(80, 80, 0, 0),
+                                padding:
+                                    const EdgeInsets.fromLTRB(80, 80, 0, 0),
                                 child: Icon(
                                   Icons.add_circle,
                                   color: Colors.grey.shade700,
@@ -83,18 +87,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         ),
                         Container(
                           child: TextFormField(
-                            decoration: ThemeHelper().textInputDecoration(
-                                'First Name', 'Enter your first name'),
-                          ),
-                          decoration: ThemeHelper().inputBoxDecorationShaddow(),
-                        ),
-                      const   SizedBox(
-                          height: 30,
-                        ),
-                        Container(
-                          child: TextFormField(
-                            decoration: ThemeHelper().textInputDecoration(
-                                'Last Name', 'Enter your last name'),
+                            decoration: ThemeHelper()
+                                .textInputDecoration('Name', 'Enter your name'),
+                            controller: name,
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
@@ -103,7 +98,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           child: TextFormField(
                             decoration: ThemeHelper().textInputDecoration(
                                 "E-mail address", "Enter your email"),
-                            keyboardType: TextInputType.emailAddress,
+                            controller: email,
                             validator: (val) {
                               if (!(val!.isEmpty) &&
                                   !RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
@@ -115,28 +110,13 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
-                       const SizedBox(height: 20.0),
-                        Container(
-                          child: TextFormField(
-                            decoration: ThemeHelper().textInputDecoration(
-                                "Mobile Number", "Enter your mobile number"),
-                            keyboardType: TextInputType.phone,
-                            validator: (val) {
-                              if (!(val!.isEmpty) &&
-                                  !RegExp(r"^(\d+)*$").hasMatch(val)) {
-                                return "Enter a valid phone number";
-                              }
-                              return null;
-                            },
-                          ),
-                          decoration: ThemeHelper().inputBoxDecorationShaddow(),
-                        ),
                         const SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
                             obscureText: true,
                             decoration: ThemeHelper().textInputDecoration(
-                                "Password*", "Enter your password"),
+                                "Password", "Enter your password"),
+                            controller: password,
                             validator: (val) {
                               if (val!.isEmpty) {
                                 return "Please enter your password";
@@ -207,8 +187,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 ),
                               ),
                             ),
-                            onPressed: () {
+                            onPressed: () async {
                               if (_formKey.currentState!.validate()) {
+                                final reser =
+                                    await Flights_reservation_service()
+                                        .AddUserAPI(context, name.text,
+                                            email.text, password.text);
                                 Navigator.of(context).pushAndRemoveUntil(
                                     MaterialPageRoute(
                                         builder: (context) => LoginPage()),
