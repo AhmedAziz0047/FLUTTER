@@ -5,9 +5,9 @@ class UpdateUser extends StatelessWidget {
   UpdateUser({Key? key, required this.id}) : super(key: key);
   final String id;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController name = TextEditingController();
-  final TextEditingController email = TextEditingController();
-  final TextEditingController password = TextEditingController();
+  final TextEditingController nameU = TextEditingController();
+  final TextEditingController emailU = TextEditingController();
+  final TextEditingController passwordU = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +35,11 @@ class UpdateUser extends StatelessWidget {
                 return const Text("no data");
               }
               var data = snapshot.data;
-              final TextEditingController name =
+              final TextEditingController nameU =
                   TextEditingController(text: data!['name']);
-              final TextEditingController email =
+              final TextEditingController emailU =
                   TextEditingController(text: data['email']);
-              final TextEditingController password =
+              final TextEditingController passwordU =
                   TextEditingController(text: data['password']);
 
               return Form(
@@ -54,7 +54,7 @@ class UpdateUser extends StatelessWidget {
                         decoration: const InputDecoration(
                           labelText: 'Name',
                         ),
-                        controller: name,
+                        controller: nameU,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Enter A Name";
@@ -63,7 +63,7 @@ class UpdateUser extends StatelessWidget {
                     const SizedBox(),
                     TextFormField(
                         decoration: const InputDecoration(labelText: 'Email'),
-                        controller: email,
+                        controller: emailU,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Enter the Email";
@@ -74,7 +74,7 @@ class UpdateUser extends StatelessWidget {
                         decoration: const InputDecoration(
                           labelText: 'Password',
                         ),
-                        controller: password,
+                        controller: passwordU,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Enter Password";
@@ -84,7 +84,7 @@ class UpdateUser extends StatelessWidget {
                     TextButton(
                       onPressed: () async {
                         await Flights_reservation_service().updateUseradmin(
-                            context, name.text, email.text, password.text);
+                            context, nameU.text, emailU.text, passwordU.text);
 
                         // MyToast().showtoast(status.statusCode == 201 ? "added successfuly" : "verif your data");
                       },
